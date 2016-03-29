@@ -1,0 +1,69 @@
+#banner {
+	width: 100%;
+	height: 180px;
+	background: black;
+	border: 1px solid #FFFFFF;
+}
+
+#banner > img {
+	display: block;
+	margin: 0 auto;
+	position: center;
+}
+
+#bar {
+	display: flex;
+}
+
+#navButtons {
+	vertical-align: top;
+	width: 60%;
+}
+
+.barButton {
+	width: 33.3333333333333333333333333%;
+	height: 30px;
+	border: 1px solid #FFFFFF;
+	background-color: #000000;
+	color: #FFFFFF;
+	font-family: Helvetica;
+}
+
+#friendsButton {
+	width: 20%;
+}
+
+#friends {
+	width: 100%;
+	height: 30px;
+	border: 1px solid #FFFFFF;
+	background-color: #000000;
+	color: #FFFFFF;
+	font-family: Helvetica;
+}
+
+#searchField {
+	vertical-align: top;
+	width: 20%;
+}
+
+#search {
+	width: 79%;
+	height: 28px;
+	font-size: 11pt;
+	background-color: #FFFFFF;
+	border: 1px solid #000000;
+	outline: none;
+	margin-top: 1px;
+}
+
+#submitSearch {
+	width: 20%;
+	height: 30px;
+	background-color: #000000;
+	border: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	margin-left: 2px;
+	font-family: Helvetica;
+}
+
