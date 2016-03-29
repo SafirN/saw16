@@ -13,12 +13,21 @@ button:visited {
 	color: #000000;
 }
 
+#topBackground {
+	width: 100%;
+	height: 210px;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	background-color: #FFFFFF;
+	position: fixed;
+}
+
 #banner {
 	width: 100%;
 	height: 180px;
 	background: black;
 	border: 1px solid #FFFFFF;
-	position: fixed;
 }
 
 #banner > img {
@@ -28,18 +37,17 @@ button:visited {
 }
 
 #bar {
-	display: flex;
+	display: block;
 }
 
 #navButtons {
-	top: 190px;
 	vertical-align: top;
 	width: 80%;
-	position: fixed;
+	display: inline-block;
 }
 
 .barButton {
-	width: 24.9%;
+	width: 25%;
 	height: 30px;
 	border: 1px solid #FFFFFF;
 	background-color: #000000;
@@ -48,32 +56,30 @@ button:visited {
 	outline: none;
 }
 
-#searchField {
-	position: fixed;
-	width: 20%;
-	top: 190px;
-	right: 0;
+#search {
+	display: inline-block;
+	vertical-align: top;
+	width: 19.7%;
 }
 
-#search {
-	width: 79%;
+#searchField {
+
+	width: 80%;
 	height: 28px;
 	font-size: 11pt;
 	background-color: #FFFFFF;
 	border: 1px solid #000000;
 	outline: none;
 	margin-top: 1px;
-	margin-left: 4px;
 }
 
 #submitSearch {
 	vertical-align: top;
-	width: 19%;
+	width: 20%;
 	height: 30px;
 	background-color: #000000;
 	border: 1px solid #FFFFFF;
 	color: #FFFFFF;
-	margin-left: 1px;
 	font-family: Helvetica;
 }
 
