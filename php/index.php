@@ -14,5 +14,10 @@
   <?php
     require "frame.php";
   ?>
+  <div id="contentDiv">
+  	<div id="content">
+  	HEJ DIN FITTA
+  	</div>
+  </div>
  </body>
 </html>

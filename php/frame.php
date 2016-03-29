@@ -5,7 +5,7 @@
 	</div>
 	<div id="bar">
 		<div id="navButtons">
-		 <button id="profile" class="barButton" type="button">Profile</button><button id="openPositions" class="barButton" type="button">Open positions</button><button id="filledPositions" class="barButton" type="button">Filled positions</button><button id="friends" class="barButton" type="button">Friends</button>
+		 <a onClick="loadProfile()"><button id="profile" class="barButton" type="button">Profile</button></a><a href="#top"><button id="openPositions" class="barButton" type="button">Open positions</button></a><a href="#top"><button id="filledPositions" class="barButton" type="button">Filled positions</button></a><a href="#top"><button id="friends" class="barButton" type="button">Friends</button></a>
 		</div>
 		<div id="search">
 			<form action="search.php" method="get">
