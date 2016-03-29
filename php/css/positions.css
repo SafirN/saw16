@@ -1,3 +1,6 @@
+html, body{
+	overflow-x: hidden;
+}
 #container{
 	position: absolute;
 	width: 100%;
@@ -5,11 +8,20 @@
 	top: 220px;
 	z-index: -1;
 }
-.positionList{
+ul{
+	position: relative;
+	width: 100%;
+	padding: 0px;
+	height: 100%;
+	list-style-type: none;
+	margin: 0 auto;
+}
+li.positionList{
 	position: relative;
 	border: solid 1px black;
 	margin: 10px 0px 0px 0px;
 	width: 99%;
+	left: 0px;
 	height: 200px;
 }
 #companyLogo{
@@ -35,7 +47,61 @@ p.companyTitle{
 	left: 130px;
 	top: 95px;
 }
+#positionInfo{
+	position: absolute;
+	width: 100px;
+	height: 70px;
+	top:120px;
+	left: 20px;
+}
+#descriptionContainer{
+	position: absolute;
+	width: 70%;
+	height: 70px;
+	left: 300px;
+	top: 120px;
+}
+p.descriptionText{
+	margin: 0;
+	font-size: 15px;
+}
+#infoTitles{
+	position: absolute;
+	height:70px;
+	top:120px;
+	left: 20px;
+	margin: 0 auto;
+
+}
+#infoText{
+	position: absolute;
+	height:70px;
+	top:120px;
+	left: 120px;
+	width:170px;
+	margin: 0 auto;
+
+}
+p.infoTitle{
+	font-weight: bold;
+	margin: 0;
+	padding-bottom: 3px;
+	font-size: 15px;
+
+}
+p.infoText{
+	margin: 0;
+	padding-bottom: 3px;
+	font-size: 15px;
+}
 p.position{
 	font-size:15px;
 	margin:auto;
+}
+#applyButton{
+	position: absolute;
+	left: 93%;
+	top: 120px;
+	width: 80px;
+	height: 60px;
 }
