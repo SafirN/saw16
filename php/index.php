@@ -7,7 +7,7 @@
   </head>
  <body>
   <?php
-   require "frame.php";
+    require "frame.php";
   ?>
  </body>
 </html>
