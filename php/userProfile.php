@@ -1,5 +1,6 @@
 <html>
- <head> 
+ <head>
+  <?php include("frame.php") ?> 
   <link rel="stylesheet" type="text/css" href="css/userProfile.css">
  </head>
  <body>
