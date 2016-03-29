@@ -1,7 +1,9 @@
 <link rel="stylesheet" type="text/css" href="css/frame.css">
-<div id="banner"> 
- <img src="img/banner.png" alt="banner">
-</div>
+	<div id="bannerBackground">
+		<div id="banner"> 
+		 <img src="img/banner.png" alt="banner">
+		</div>
+	</div>
 <div id="bar">
 	<div id="navButtons">
 	 <button id="profile" class="barButton" type="button">Profile</button><button id="openPositions" class="barButton" type="button">Open positions</button><button id="filledPositions" class="barButton" type="button">Filled positions</button><button id="friends" class="barButton" type="button">Friends</button>
