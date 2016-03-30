@@ -15,7 +15,7 @@
    </div>
 
    <div id="infoContainer">
-    <div id="infoTitles"> 
+    <div id="infoTitles">
      <p class="infoTitle"> Contact: </p>
       <!--  IF NOT NULL SENARE -->
      <p class="infoTitle"> HQ: </p>
