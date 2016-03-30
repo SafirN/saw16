@@ -1,12 +1,8 @@
 <?php
-	require "phpconf.php";
-	$servername = '130.229.162.242';
-	$username = "Safir";
-	$password = "safir12345678";
-	$dbname = "saw16";
-	
+	include("phpconf.php");
+	$username = "Safir";	
 	//Create connection
-	$conn = new PDO('mysql:host=130.229.162.242;dbname=saw16', $username, $password);
+	$conn = new PDO($serverName, $username, $pw);
 
 	//Check connection
 	if ($conn->connect_error){
