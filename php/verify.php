@@ -18,7 +18,9 @@
 
 	$prepared = $conn ->prepare("SELECT mail FROM credentials WHERE mail = ?");
 	$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
-	$num_row = $prepared->exec();
+	$prepared->execute();
+
+	$num_row = $prepared->rowCount();
 
 	//while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
 //					echo $row["lan"];/
@@ -26,7 +28,7 @@
 	//			}	
 
 	if($num_row > 0){ //Användare finns
-
+		echo "HITTADE MAIL BROR";
 
 	}else{ // Användare finns inte
 		echo "KUAEUAUEUAE";
