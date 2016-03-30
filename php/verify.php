@@ -1,7 +1,7 @@
 <?php
 	$servername = '130.229.162.242';
 	$username = "Safir";
-	$password = "safir12345678";
+	$password = 
 	$dbname = "saw16";
 	
 	//Create connection
