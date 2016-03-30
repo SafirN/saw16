@@ -1,7 +1,7 @@
 <?php
 	$servername = '130.229.162.242';
 	$username = "Safir";
-	$password = 
+	$password = "safir12345678";
 	$dbname = "saw16";
 	
 	//Create connection
@@ -11,9 +11,30 @@
 	if ($conn->connect_error){
 		 die("Connection failed"  .$conn->connect_error);
 	}
+	$conn->query("USE saw16"); // Selecting db
 
-	$selectDb = "USE saw16";
-	$conn->query($selectDb);
+	$mail = $_POST['mail'];
+	$password = $_POST['password'];
+
+	$prepared = $conn ->prepare("SELECT mail FROM credentials WHERE mail = ?");
+	$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
+	$num_row = $prepared->exec();
+
+	//while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
+//					echo $row["lan"];/
+		//			echo $row["objekttyp"];
+	//			}	
+
+	if($num_row > 0){ //Användare finns
+
+
+	}else{ // Användare finns inte
+		echo "KUAEUAUEUAE";
+
+
+	}
+
+
 	$prepared = $conn->prepare("SELECT mail, password WHERE mail = ? AND password = ?;");
 		$prepared->bindParam(1, $_POST['mail'], PDO::PARAM_STR, strlen($_POST['mail']));
 		$prepared->bindParam(2, $_POST['password'], PDO::PARAM_STR, strlen($_POST['password']));
