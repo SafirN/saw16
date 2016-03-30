@@ -1,0 +1,35 @@
+Att göra:
+
+1. Skriva html sidor:
+Login.php + (hashning av lösenord!)
+FilledPositions.php
+Friends.php
+
+2. Styla alla sidor med css:
+Login.php
+UserProfile.php
+CompanyProfile.php
+OpenPositions.php
+FilledPositions.php
+Friends.php
+
+3. Databashämtningar för alla berörda sidor
+
+4. Adda funktionaliteter till hemsidan:
+Add friend
+Remove friend
+Like Company
+Unlike company
+Add position
+Apply for position
+Search company/user
+Filter positions
+Accept application
+Deny application
+
+5. Hantera cookies
+
+6. Fylla DBn så hemsidan ser verklig ut
+
+SAFIR:
+Fixa dbcalls för userprofile/companyprofile
