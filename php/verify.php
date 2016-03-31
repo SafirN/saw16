@@ -24,14 +24,9 @@
 	}	
 	if($num_row > 0){ //Användare finns
 		if(hash_equals($hashPw, crypt($password, $salt))){
-			echo "ja bror";
 			setcookie('mail', $mail, time()+ (86400 * 30), "/");
 		}else{
-			echo "nej bror";
 		}
-		
-
-	}else{ // Användare finns inte
-		echo "User does not exist!";
 	}
+	header("Location: index.php");
 ?>
