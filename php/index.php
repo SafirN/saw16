@@ -28,7 +28,7 @@
   	 </div>
    </div>
    <?php
-    $cookieName = "user";
+    $cookieName = "mail";
     echo '<script> loadBar(); </script>';
     if(!isset($_COOKIE[$cookieName])) {
      echo '<script> loadLogin(); </script>';

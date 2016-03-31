@@ -15,6 +15,56 @@ function loadProfile(userType) {
       <div id="container">\
        Shit is real\
         <div id="profilePicture">\
+            <img id="userPicture" alt="Ingen bild, sorry!" src="' + data.profilePicture + '">\
+       </div>\
+       <div id="profileName">\
+        <p id="profileText">' + data.name + '</p>\
+       </div>\
+       <div id="infoContainer">\
+        <div id="infoTitles">\
+         <p class="infoTitle"> Contact:</p>\
+         <p class="infoTitle"> City: </p>\
+         <p class="infoTitle"> Age:  </p>\
+         <p class="infoTitle"> Gender: </p>\
+         <p class="infoTitle"> Education:  </p>\
+         <p class="infoTitle"> Occupation:  </p>\
+         <p class="infoTitle"> Merits:  </p>\
+        </div>\
+       <div id="infoText">\
+        <p class="infoText">' + data.mail + '</p>\
+        <p class="infoText">' + data.city + '</p>\
+        <p class="infoText">' + data.age + '</p>\
+        <p class="infoText">' + data.gender + '</p>\
+        <p class="infoText">' + data.education + '</p>\
+        <p class="infoText">' + data.currentWork + '</p>\
+        <p class="infoText">' + data.merits + '</p>\
+       </div>\
+      </div>\
+      <div id="descriptionContainer">\
+       <p id="descriptionText">' + data.description + '</p>\
+    </div>';
+    } //end of success
+  }); //end of AJAX
+}
+
+
+/*
+function loadProfile(userType) {
+  if(userType === "user") {
+        //Update content with user profile HTML
+  } else {
+        //Update content with company profile HTML
+  }
+  
+  $.ajax({
+    url: "../php/userProfile.php",
+    type: "GET",
+    dataType:"json",
+    success: function(data) {
+      document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
+      <div id="container">\
+       Shit is real\
+        <div id="profilePicture">\
             <img id="userPicture" alt="Ingen bild, sorry!" src="' + data[2] + '">\
        </div>\
        <div id="profileName">\
@@ -44,28 +94,9 @@ function loadProfile(userType) {
        <p id="descriptionText">' + data[7] + '</p>\
     </div>';
     } //end of success
+    error: function() {
+        alert("SOMETHING IS WRONG");
+    }
   }); //end of AJAX
 }
-
-
-/*function loadProfile(accType) {
-	if(accType === "user") {
-		var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("content").innerHTML = xmlhttp.responseText;
-            }
-        };
-        xmlhttp.open("GET", "userProfileEcho.php" , true);
-        xmlhttp.send();
-	} else {
-		var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("content").innerHTML = xmlhttp.responseText;
-            }
-        };
-        xmlhttp.open("GET", "companyProfileEcho.php" , true);
-        xmlhttp.send();
-	}
-}*/
+*/

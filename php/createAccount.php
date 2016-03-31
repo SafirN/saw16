@@ -44,11 +44,11 @@
 		$prepared->bindParam(3, $salt, PDO::PARAM_STR, strlen($salt));
 		$prepared->execute();
 
-		$prepared = $conn->prepare("INSERT INTO userProfiles(name, mail) VALUES (?,?)");
+		$prepared = $conn->prepare("INSERT INTO userProfiles(name, mail, profilePicture, currentWork, gender, education, age, description, merits, city) VALUES (?,?, 'hidden', 'hidden', 'hidden', 'hidden', 0, ' hidden', 'hidden', 'hidden')");
 		$prepared->bindParam(1, $name, PDO::PARAM_STR, strlen($mail));
 		$prepared->bindParam(2, $mail, PDO::PARAM_STR, strlen($mail));
 		$prepared->execute();
-		setcookie("cookie", $mail, time()+ (86400 * 30), "/");
+		setcookie("mail", $mail, time()+ (86400 * 30), "/");
 		
 		echo "<script> loadProfile();</script>";
 	
