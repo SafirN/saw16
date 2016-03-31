@@ -1,9 +1,6 @@
-<html>
- <head>
-  <?php include("frame.php") ?> 
-  <link rel="stylesheet" type="text/css" href="css/userProfile.css">
- </head>
- <body>
+
+ 
+<link rel="stylesheet" type="text/css" href="css/userProfile.css">
   <div id="container"> 
    Shit is real
    <div id="profilePicture"> 
