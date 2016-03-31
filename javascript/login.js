@@ -4,10 +4,21 @@ function loadLogin() {
 		<input type="text" name="mail" placeholder="User mail"><br>\
 		<input type="text" name="password" placeholder="Password"><br>\
 		<input type="submit" value="Login">\
-		</form>';
+		</form>\
+		<button onClick="loadCreateAccountForm()">Create Account</button>'
+		;
 }
 
+function loadCreateAccountForm(){
+	document.getElementById("content").innerHTML = '<link rel="stylesheet" type="html/css" src="css/login.css">\
+		<form action="createAccount.php" method="post" id="loginFields">\
+		<input type="text" name="name" placeholder="Name"><br>\
+		<input type="text" name="mail" placeholder="User mail"><br>\
+		<input type="text" name="password" placeholder="Password"><br>\
+		<input type="submit" value="Create Account">\
+		</form>';
 
+}
 /*function loadLogin() {
 	var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {

@@ -8,6 +8,7 @@
 
 	$conn->query("USE saw16"); // Selecting db
 
+	$name = $_POST['name'];
 	$mail = $_POST['mail'];
 	$password = $_POST['password'];
 
@@ -16,7 +17,6 @@
 	$prepared->execute();
 
 	$num_row = $prepared->rowCount();
-
 	//while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
 //					echo $row["lan"];/
 		//			echo $row["objekttyp"];
@@ -26,15 +26,25 @@
 		echo "HITTADE MAIL BROR";
 
 	}else{ // Användare finns inte
-		echo "KUAEUAUEUAE";
-		$cost = 10;
+		//Cost
+		$cost = 10; 
+		//Random salt
 		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
+		echo "salted value " + $salt;
+		//Infrmation about the hash using blowfish algorithm
+		$salt = sprintf("$2a$%02d$", $cost) . $salt;
+		//DES Based
+		$hash = crypt($password, $salt);
+
+		$prepared = $conn->prepare("INSERT INTO credentials(mail, password, salt) VALUES (?,?,?)");
+		$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
+		$prepared->bindParam(2, $hash, PDO::PARAM_STR, strlen($hash));
+		$prepared->bindParam(3, $salt, PDO::PARAM_STR, strlen($salt));
+		$prepared->execute();
+
+		setcookie("cookie", $mail, time()+ (86400 * 30), "/");
+
+
 
 	}
-
-
-	$prepared = $conn->prepare("SELECT mail, password WHERE mail = ? AND password = ?;");
-		$prepared->bindParam(1, $_POST['mail'], PDO::PARAM_STR, strlen($_POST['mail']));
-		$prepared->bindParam(2, $_POST['password'], PDO::PARAM_STR, strlen($_POST['password']));
-		$prepared->execute();
 ?>
