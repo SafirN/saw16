@@ -13,7 +13,10 @@
     $prepared->bindParam(1, $_COOKIE['mail'], PDO::PARAM_STR, strlen($_COOKIE['mail']));
     $prepared->execute();
     $result = $prepared->fetch(PDO::FETCH_ASSOC);
-    print json_encode($result);
+    $arr = array();
+    array_push($arr, $result);
+    array_push($arr, $_COOKIE['mail']);
+    print json_encode($arr);
     
     //print json_encode($result['name']);
 ?>

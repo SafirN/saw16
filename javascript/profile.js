@@ -11,14 +11,14 @@ function loadProfile(userType) {
     type: "GET",
     dataType:"json",
     success: function(data) {
-      document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
+      var retString = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
       <div id="container">\
        Shit is real\
         <div id="profilePicture">\
-            <img id="userPicture" alt="Ingen bild, sorry!" src="' + data.profilePicture + '">\
+            <img id="userPicture" alt="Ingen bild, sorry!" src="' + data[0].profilePicture + '">\
        </div>\
        <div id="profileName">\
-        <p id="profileText">' + data.name + '</p>\
+        <p id="profileText">' + data[0].name + '</p>\
        </div>\
        <div id="infoContainer">\
         <div id="infoTitles">\
@@ -31,20 +31,42 @@ function loadProfile(userType) {
          <p class="infoTitle"> Merits:  </p>\
         </div>\
        <div id="infoText">\
-        <p class="infoText">' + data.mail + '</p>\
-        <p class="infoText">' + data.city + '</p>\
-        <p class="infoText">' + data.age + '</p>\
-        <p class="infoText">' + data.gender + '</p>\
-        <p class="infoText">' + data.education + '</p>\
-        <p class="infoText">' + data.currentWork + '</p>\
-        <p class="infoText">' + data.merits + '</p>\
+        <p class="infoText">' + data[0].mail + '</p>\
+        <p class="infoText">' + data[0].city + '</p>\
+        <p class="infoText">' + data[0].age + '</p>\
+        <p class="infoText">' + data[0].gender + '</p>\
+        <p class="infoText">' + data[0].education + '</p>\
+        <p class="infoText">' + data[0].currentWork + '</p>\
+        <p class="infoText">' + data[0].merits + '</p>\
        </div>\
       </div>\
       <div id="descriptionContainer">\
-       <p id="descriptionText">' + data.description + '</p>\
-    </div>';
+       <p id="descriptionText">' + data[0].description + '</p>';
+      if(data[1] === data[0].mail){
+        retString += '<div id="editInfo"> <button onClick="editUserProfile()"> Edit your profile</button> </div>';
+      }
+      retString += '</div>';
+      document.getElementById("content").innerHTML = retString;
+
     } //end of success
   }); //end of AJAX
+}
+function editUserProfile(){
+  document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
+      <form action="../php/userProfile.php" method="post" id="editProfile">\
+      <input type="text" name="name" placeholder="Name"><br>\
+      <input type="text" name="profilePicture" placeholder="URL"><br>\
+      <input type="text" name="currentWork" placeholder="Work"><br>\
+      <input class="radioButtons" type="radio" name="gender" value="Male"> Male<br>\
+     <input class="radioButtons" type="radio" name="gender" value="Female"> Female<br>\
+     <input class="radioButtons" type="radio" name="gender" value="Other"> Other<br>\
+      <input type="text" name="education" placeholder="Education"><br>\
+    <input type="text" name="age" placeholder="Age"><br>\
+    <input type="text" name="description" placeholder="Description"><br>\
+    <input type="submit" value="Update Profile">\
+    </form>\
+    <button onClick="loadProfile()">Back</button>';
+
 }
 
 
