@@ -80,15 +80,17 @@ function loadProfile() {
 }
 function editUserProfile(){
   document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
-      <form action="../php/userProfile.php" method="post" id="editProfile">\
+      <form action="../php/editProfile.php" method="post" id="editProfile">\
       <input type="text" name="name" placeholder="Name"><br>\
+       <input type="text" name="age" placeholder="Age"><br>\
+        <input type="text" name="city" placeholder="City"><br>\
+            <input type="text" name="education" placeholder="Education"><br>\
       <input type="text" name="profilePicture" placeholder="Picture URL"><br>\
       <input type="text" name="currentWork" placeholder="Work"><br>\
-      <input class="radioButtons" type="radio" name="gender" value="male"> Male<br>\
-     <input class="radioButtons" type="radio" name="gender" value="female"> Female<br>\
-     <input class="radioButtons" type="radio" name="gender" value="other"> Other<br>\
-      <input type="text" name="education" placeholder="Education"><br>\
-    <input type="text" name="age" placeholder="Age"><br>\
+      <input class="radioButtons" type="radio" name="gender" value="Male"> Male<br>\
+     <input class="radioButtons" type="radio" name="gender" value="Female"> Female<br>\
+     <input class="radioButtons" type="radio" name="gender" value="Other" checked="checked"> Other<br>\
+    <input type="text" name="merits" placeholder="Merits"><br>\
     <input type="text" name="description" placeholder="Description"><br>\
     <input type="submit" value="Update Profile">\
     </form>\
@@ -97,7 +99,7 @@ function editUserProfile(){
 }
 function editCompanyProfile(){
     document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
-      <form action="../php/userProfile.php" method="post" id="editProfile">\
+      <form action="../php/editProfile.php" method="post" id="editProfile">\
       <input type="text" name="company" placeholder="Company"><br>\
       <input type="text" name="companyPicture" placeholder="Picture URL"><br>\
       <input type="text" name="headQuarter" placeholder="HQ"><br>\
