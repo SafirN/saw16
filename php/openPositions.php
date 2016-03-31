@@ -9,7 +9,7 @@
   $prepared->execute();
   $result = array();
   while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
-      $result[] = json_encode($row);
+      array_push($result, $row);
   }
   print json_encode($result);
 ?>

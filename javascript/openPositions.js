@@ -4,20 +4,17 @@ function loadOpenPositions() {
     type: "GET",
     dataType:"json",
     success: function(data) {
-     var retString = "";
-     for(int i = 0, i < data.length; i+=1) {
-          retString += '<link rel="stylesheet" type="text/css" href="css/positions.css">\
-           <div id="container">\
-            <ul>\
-           <li class="positionList">\
+     var retString = '<link rel="stylesheet" type="text/css" href="css/positions.css"><div id="container"><ul>';
+     for(var i = 0; i < data.length; i++) {
+          retString += '<li class="positionList">\
             <div id="companyLogo">\
              Logo\
             </div>\
            <div id="companyName">\
-             <p class="companyTitle">' + data.company[i] +'</p>\
+             <p class="companyTitle">' + data[i].company +'</p>\
            </div>\
            <div id="positionContainer">\
-             <p class="position">' + data.position[i] + '</p>\
+             <p class="position">' + data[i].position + '</p>\
            </div>\
              <div id="infoTitles">\
               <p class="infoTitle"> Country: </p>\
@@ -26,10 +23,10 @@ function loadOpenPositions() {
               <p class="infoTitle"> Merits: </p>\
              </div>\
              <div id="infoText">\
-             <p class="infoText">' + data.country[i] + '</p>\
-             <p class="infoText">' + data.city[i] + '</p>\
-             <p class="infoText">' + data.weeklyHours[i] + '</p>\
-             <p class="infoText">' + data.merits[i] + '</p>\
+             <p class="infoText">' + data[i].country + '</p>\
+             <p class="infoText">' + data[i].city + '</p>\
+             <p class="infoText">' + data[i].weeklyHours + '</p>\
+             <p class="infoText">' + data[i].merits + '</p>\
             </div>\
             <div id="descriptionContainer">\
             <p class="descriptionText"> <strong>Description:</strong> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor qui is unde omnis iste natus error sit voluptatem accusantium dolor qui is unde omnis iste natus error sit voluptatem accusantium dolor quiis unde omnis iste natus error sit voluptatem accusantium dolor qui is unde omnis iste natus error sit voluptatem accusantium dolor qui  in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\
@@ -37,17 +34,10 @@ function loadOpenPositions() {
             </div>\
             <button id="applyButton">Apply!</button>\
            </li>\
-            </div>\
-           </div>\
-          </ul>';
-
-
-      document.getElementById("content").innerHTML = retString;
+            </div>';
+     }
+     retString += '</ul></div>';
+     document.getElementById("content").innerHTML = retString;
     }
   });
-}
-
-var retString;
-
-
 }
