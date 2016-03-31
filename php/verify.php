@@ -11,30 +11,27 @@
 	$mail = $_POST['mail'];
 	$password = $_POST['password'];
 
-	$prepared = $conn ->prepare("SELECT mail FROM credentials WHERE mail = ?");
+	$prepared = $conn ->prepare("SELECT mail, password, salt FROM credentials WHERE mail = ?");
 	$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
 	$prepared->execute();
 
 	$num_row = $prepared->rowCount();
-
-	//while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
-//					echo $row["lan"];/
-		//			echo $row["objekttyp"];
-	//			}	
-
+	$hashPw = "";
+	$salt ="";
+	while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
+					$hashPw = $row["password"];
+					$salt =  $row["salt"];
+	}	
 	if($num_row > 0){ //Användare finns
-		echo "HITTADE MAIL BROR";
+		if(strcmp($hashPw, crypt($password, $salt))){
+			echo "ja bror";
+			setcookie("cookie", $mail, time()+ (86400 * 30), "/");
+		}else{
+			echo "nej bror";
+		}
+		
 
 	}else{ // Användare finns inte
-		echo "KUAEUAUEUAE";
-		$cost = 10;
-		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
-
+		echo "User does not exist!";
 	}
-
-
-	$prepared = $conn->prepare("SELECT mail, password WHERE mail = ? AND password = ?;");
-		$prepared->bindParam(1, $_POST['mail'], PDO::PARAM_STR, strlen($_POST['mail']));
-		$prepared->bindParam(2, $_POST['password'], PDO::PARAM_STR, strlen($_POST['password']));
-		$prepared->execute();
 ?>
