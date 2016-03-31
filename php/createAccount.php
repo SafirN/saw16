@@ -11,6 +11,7 @@
 	$name = $_POST['name'];
 	$mail = $_POST['mail'];
 	$password = $_POST['password'];
+	$type = $_POST['type'];
 
 	$prepared = $conn ->prepare("SELECT mail FROM credentials WHERE mail = ?");
 	$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
@@ -41,11 +42,40 @@
 		$prepared->bindParam(3, $salt, PDO::PARAM_STR, strlen($salt));
 		$prepared->execute();
 
-		$prepared = $conn->prepare("INSERT INTO userProfiles(name, mail, profilePicture, currentWork, gender, education, age, description, merits, city) VALUES (?,?, 'hidden', 'hidden', 'hidden', 'hidden', 0, ' hidden', 'hidden', 'hidden')");
-		$prepared->bindParam(1, $name, PDO::PARAM_STR, strlen($mail));
-		$prepared->bindParam(2, $mail, PDO::PARAM_STR, strlen($mail));
-		$prepared->execute();
-		setcookie("mail", $mail, time()+ (86400 * 30), "/");	
+
+		if(strcmp("user", $type) == 0){ // User
+			$prepared = $conn->prepare("INSERT INTO userProfiles(name, mail, profilePicture, currentWork, gender, education, age, description, merits, city) VALUES (?,?, 'hidden', 'hidden', 'hidden', 'hidden', 0, ' hidden', 'hidden', 'hidden')");
+			$prepared->bindParam(1, $name, PDO::PARAM_STR, strlen($name));
+			$prepared->bindParam(2, $mail, PDO::PARAM_STR, strlen($mail));
+			$prepared->execute();
+
+			$prepared = $conn->prepare("INSERT INTO credentials(mail, type) VALUES (?,?)");
+			$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
+			$prepared->bindParam(2, $hash, PDO::PARAM_STR, strlen($hash));
+			$prepared->execute();
+
+			$prepared = $conn->prepare("INSERT INTO profileType(mail, type) VALUES (?,?)");
+			$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
+			$prepared->bindParam(2, $type, PDO::PARAM_STR, strlen($type));
+			$prepared->execute();
+		}else{ //Company
+			$prepared = $conn->prepare("INSERT INTO companyProfiles(company, mail, orientation, companyPicture, headQuarter, description, isHiring) VALUES (?,?, 'hidden', 'hidden', 'hidden', 'hidden', true)");
+			$prepared->bindParam(1, $name, PDO::PARAM_STR, strlen($name));
+			$prepared->bindParam(2, $mail, PDO::PARAM_STR, strlen($mail));
+			$prepared->execute();
+
+			$prepared = $conn->prepare("INSERT INTO credentials(mail, type) VALUES (?,?)");
+			$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
+			$prepared->bindParam(2, $hash, PDO::PARAM_STR, strlen($hash));
+			$prepared->execute();
+
+			$prepared = $conn->prepare("INSERT INTO profileType(mail, type) VALUES (?,?)");
+			$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
+			$prepared->bindParam(2, $type, PDO::PARAM_STR, strlen($type));
+			$prepared->execute();
+		}
+		setcookie("mail", $mail, time()+ (86400 * 30), "/");
+		setcookie("userType", $type, time()+ (86400 * 30), "/");	
 	}
 	header("Location: index.php");
 ?>

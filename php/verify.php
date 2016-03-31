@@ -24,7 +24,12 @@
 	}	
 	if($num_row > 0){ //Användare finns
 		if(hash_equals($hashPw, crypt($password, $salt))){
+			$prepared = $conn ->prepare("SELECT type FROM profileType WHERE mail = ?");
+			$prepared->bindParam(1, $mail, PDO::PARAM_STR, strlen($mail));
+			$prepared->execute();
+			$result = $prepared->fetch(PDO::FETCH_ASSOC);
 			setcookie('mail', $mail, time()+ (86400 * 30), "/");
+			setcookie('type', $result['type'], time()+ (86400 * 30), "/");
 		}else{
 		}
 	}

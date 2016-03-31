@@ -13,6 +13,8 @@ function loadCreateAccountForm(){
 	document.getElementById("content").innerHTML = '<link rel="stylesheet" type="html/css" src="css/login.css">\
 		<form action="createAccount.php" method="post" id="loginFields">\
 		<input type="text" name="name" placeholder="Name"><br>\
+		<input class="radioButtons" type="radio" name="type" value="user"> User<br>\
+     	<input class="radioButtons" type="radio" name="type" value="company"> Company<br>\
 		<input type="text" name="mail" placeholder="User mail"><br>\
 		<input type="text" name="password" placeholder="Password"><br>\
 		<input type="submit" value="Create Account">\

@@ -1,50 +1,77 @@
 
-function loadProfile(userType) {
-  if(userType === "user") {
-        //Update content with user profile HTML
-  } else {
-        //Update content with company profile HTML
-  }
-  
-  $.ajax({
+function loadProfile() {
+   $.ajax({
     url: "../php/userProfile.php",
     type: "GET",
     dataType:"json",
     success: function(data) {
-      var retString = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
-      <div id="container">\
-       Shit is real\
-        <div id="profilePicture">\
-            <img id="userPicture" alt="Ingen bild, sorry!" src="' + data[0].profilePicture + '">\
-       </div>\
-       <div id="profileName">\
-        <p id="profileText">' + data[0].name + '</p>\
-       </div>\
-       <div id="infoContainer">\
-        <div id="infoTitles">\
-         <p class="infoTitle"> Contact:</p>\
-         <p class="infoTitle"> City: </p>\
-         <p class="infoTitle"> Age:  </p>\
-         <p class="infoTitle"> Gender: </p>\
-         <p class="infoTitle"> Education:  </p>\
-         <p class="infoTitle"> Occupation:  </p>\
-         <p class="infoTitle"> Merits:  </p>\
+      var retString = "";
+      if(data[2] === "user"){
+        retString += '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
+        <div id="container">\
+         Shit is real\
+          <div id="profilePicture">\
+              <img id="userPicture" alt="Ingen bild, sorry!" src="' + data[0].profilePicture + '">\
+         </div>\
+         <div id="profileName">\
+          <p id="profileText">' + data[0].name + '</p>\
+         </div>\
+         <div id="infoContainer">\
+          <div id="infoTitles">\
+           <p class="infoTitle"> Contact:</p>\
+           <p class="infoTitle"> City: </p>\
+           <p class="infoTitle"> Age:  </p>\
+           <p class="infoTitle"> Gender: </p>\
+           <p class="infoTitle"> Education:  </p>\
+           <p class="infoTitle"> Occupation:  </p>\
+           <p class="infoTitle"> Merits:  </p>\
+          </div>\
+         <div id="infoText">\
+          <p class="infoText">' + data[0].mail + '</p>\
+          <p class="infoText">' + data[0].city + '</p>\
+          <p class="infoText">' + data[0].age + '</p>\
+          <p class="infoText">' + data[0].gender + '</p>\
+          <p class="infoText">' + data[0].education + '</p>\
+          <p class="infoText">' + data[0].currentWork + '</p>\
+          <p class="infoText">' + data[0].merits + '</p>\
+         </div>\
         </div>\
-       <div id="infoText">\
-        <p class="infoText">' + data[0].mail + '</p>\
-        <p class="infoText">' + data[0].city + '</p>\
-        <p class="infoText">' + data[0].age + '</p>\
-        <p class="infoText">' + data[0].gender + '</p>\
-        <p class="infoText">' + data[0].education + '</p>\
-        <p class="infoText">' + data[0].currentWork + '</p>\
-        <p class="infoText">' + data[0].merits + '</p>\
-       </div>\
-      </div>\
-      <div id="descriptionContainer">\
-       <p id="descriptionText">' + data[0].description + '</p>';
-      if(data[1] === data[0].mail){
+        <div id="descriptionContainer">\
+         <p id="descriptionText">' + data[0].description + '</p>';
+        if(data[1] === data[0].mail){
         retString += '<div id="editInfo"> <button onClick="editUserProfile()"> Edit your profile</button> </div>';
       }
+        
+      }else{
+         retString += '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
+        <div id="container">\
+         Shit is real\
+          <div id="profilePicture">\
+              <img id="userPicture" alt="Ingen bild, sorry!" src="' + data[0].companyPicture + '">\
+         </div>\
+         <div id="profileName">\
+          <p id="profileText">' + data[0].company + '</p>\
+         </div>\
+         <div id="infoContainer">\
+          <div id="infoTitles">\
+           <p class="infoTitle"> Contact:</p>\
+           <p class="infoTitle"> HQ: </p>\
+           <p class="infoTitle"> Orientation:  </p>\
+          </div>\
+         <div id="infoText">\
+          <p class="infoText">' + data[0].mail + '</p>\
+          <p class="infoText">' + data[0].headQuarter + '</p>\
+          <p class="infoText">' + data[0].orientation + '</p>\
+         </div>\
+        </div>\
+        <div id="descriptionContainer">\
+         <p id="descriptionText">' + data[0].description + '</p>';
+        if(data[1] === data[0].mail){
+        retString += '<div id="editInfo"> <button onClick="editCompanyProfile()"> Edit your profile</button> </div>';
+      }
+
+      }
+      
       retString += '</div>';
       document.getElementById("content").innerHTML = retString;
 
@@ -55,11 +82,11 @@ function editUserProfile(){
   document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
       <form action="../php/userProfile.php" method="post" id="editProfile">\
       <input type="text" name="name" placeholder="Name"><br>\
-      <input type="text" name="profilePicture" placeholder="URL"><br>\
+      <input type="text" name="profilePicture" placeholder="Picture URL"><br>\
       <input type="text" name="currentWork" placeholder="Work"><br>\
-      <input class="radioButtons" type="radio" name="gender" value="Male"> Male<br>\
-     <input class="radioButtons" type="radio" name="gender" value="Female"> Female<br>\
-     <input class="radioButtons" type="radio" name="gender" value="Other"> Other<br>\
+      <input class="radioButtons" type="radio" name="gender" value="male"> Male<br>\
+     <input class="radioButtons" type="radio" name="gender" value="female"> Female<br>\
+     <input class="radioButtons" type="radio" name="gender" value="other"> Other<br>\
       <input type="text" name="education" placeholder="Education"><br>\
     <input type="text" name="age" placeholder="Age"><br>\
     <input type="text" name="description" placeholder="Description"><br>\
@@ -68,7 +95,18 @@ function editUserProfile(){
     <button onClick="loadProfile()">Back</button>';
 
 }
-
+function editCompanyProfile(){
+    document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
+      <form action="../php/userProfile.php" method="post" id="editProfile">\
+      <input type="text" name="company" placeholder="Company"><br>\
+      <input type="text" name="companyPicture" placeholder="Picture URL"><br>\
+      <input type="text" name="headQuarter" placeholder="HQ"><br>\
+      <input type="text" name="orientation" placeholder="Orientation"><br>\
+      <input type="text" name="description" placeholder="Description"><br>\
+      <input type="submit" value="Update Profile">\
+      </form>\
+      <button onClick="loadProfile()">Back</button>';
+}
 
 /*
 function loadProfile(userType) {
