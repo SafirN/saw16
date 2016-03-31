@@ -23,7 +23,7 @@
 					$salt =  $row["salt"];
 	}	
 	if($num_row > 0){ //Användare finns
-		if(strcmp($hashPw, crypt($password, $salt))){
+		if(hash_equals($hashPw, crypt($password, $salt))){
 			echo "ja bror";
 			setcookie("cookie", $mail, time()+ (86400 * 30), "/");
 		}else{
