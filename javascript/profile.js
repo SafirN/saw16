@@ -189,6 +189,30 @@ function updateUserAjax(){
   });
 
 }
+function declineApplicant(userMail, position){
+    var optionVal = "accept";
+     $.ajax({
+      url: "../php/manageApplication.php",
+      type: "POST",
+      dataType: "json",
+      data: {option: optionVal, userMail: userMail, position: position},
+      success: function(data){
+        viewApplications();
+    }
+  });
+}
+function acceptApplicant(userMail, position){
+    var optionVal = "accept";
+    $.ajax({
+      url: "../php/manageApplication.php",
+      type: "POST",
+      dataType: "json",
+      data: {option: optionVal, userMail: userMail, position: position},
+      success: function(data){
+        alert(data);
+    }
+  });
+}
 function viewApplications(){
   $.ajax({
     url: "../php/viewApplications.php",
@@ -207,13 +231,8 @@ function viewApplications(){
              <div id="infoText">\
              <p class="infoText">' + data[i].userMail + '</p>\
             </div>\
-            <form id="applicantForm">\
-              <input class="radioButtons" type="radio" id="genderMale" value="Male"> Male\
-              <input class="radioButtons" type="radio" id="genderFemale" value="Female"> Female<br>\
-               <input type="submit" onClick="addPositionAjax()" value="Add position"><br>\
-               <button onClick="loadProfile()">Back</button>\
-              </form>\
-            </form>\
+            <button id="applyButton" onClick="acceptApplicant(\'' + data[i].userMail  +'\',\'' + data[i].position + '\')">Accept</button>\
+            <button id="applyButton" onClick="declineApplicant(\'' + data[i].userMail  +'\',\'' + data[i].position + '\')">Decline</button>\
            </li>';
      }
      retString += '</ul></div>';
@@ -221,6 +240,8 @@ function viewApplications(){
     }
   })
 }
+
+
 /*
 function loadProfile(userType) {
   if(userType === "user") {
