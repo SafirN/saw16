@@ -81,49 +81,108 @@ function loadProfile() {
 }
 function editUserProfile(){
   document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
-      <form action="../php/editProfile.php" method="post" id="editProfile">\
-      <input type="text" name="name" placeholder="Name"><br>\
-       <input type="text" name="age" placeholder="Age"><br>\
-        <input type="text" name="city" placeholder="City"><br>\
-            <input type="text" name="education" placeholder="Education"><br>\
-      <input type="text" name="profilePicture" placeholder="Picture URL"><br>\
-      <input type="text" name="currentWork" placeholder="Work"><br>\
-      <input class="radioButtons" type="radio" name="gender" value="Male"> Male<br>\
-     <input class="radioButtons" type="radio" name="gender" value="Female"> Female<br>\
-     <input class="radioButtons" type="radio" name="gender" value="Other" checked="checked"> Other<br>\
-    <input type="text" name="merits" placeholder="Merits"><br>\
-    <input type="text" name="description" placeholder="Description"><br>\
-    <input type="submit" value="Update Profile">\
-    </form>\
+      <form  id="editProfileForm">\
+      <input type="text" id="age" placeholder="Age"><br>\
+      <input type="text" id="city" placeholder="City"><br>\
+      <input type="text" id="education" placeholder="Education"><br>\
+      <input type="text" id="profilePicture" placeholder="Picture URL"><br>\
+      <input type="text" id="currentWork" placeholder="Work"><br>\
+      <input class="radioButtons" type="radio" id="genderMale" value="Male"> Male<br>\
+      <input class="radioButtons" type="radio" id="genderFemale" value="Female"> Female<br>\
+      <input class="radioButtons" type="radio" id="genderOther" value="Other"> Other<br>\
+      <input type="text" id="merits" placeholder="Merits"><br>\
+      <input type="text" id="description" placeholder="Description"><br>\
+      <input type="submit" onClick="updateUserAjax()"value="Update Profile">\
+      </form>\
     <button onClick="loadProfile()">Back</button>';
 
 }
 function editCompanyProfile(){
     document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
-      <form action="../php/editProfile.php" method="post" id="editProfile">\
-      <input type="text" name="company" placeholder="Company"><br>\
-      <input type="text" name="companyPicture" placeholder="Picture URL"><br>\
-      <input type="text" name="headQuarter" placeholder="HQ"><br>\
-      <input type="text" name="orientation" placeholder="Orientation"><br>\
-      <input type="text" name="description" placeholder="Description"><br>\
-      <input type="submit" value="Update Profile">\
+      <form id="editCompanyProfileForm">\
+      <input type="text" id="companyPicture" placeholder="Picture URL"><br>\
+      <input type="text" id="headQuarter" placeholder="HQ"><br>\
+      <input type="text" id="orientation" placeholder="Orientation"><br>\
+      <input type="text" id="description" placeholder="Description"><br>\
+      <input type="submit" onClick="updateCompanyAjax()" value="Update Profile">\
       </form>\
       <button onClick="loadProfile()">Back</button>';
 }
 function addPosition(){
     document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
-      <form action="../php/addPosition.php" method="post" id="editProfile">\
-      <input type="text" name="position" placeholder="Position"><br>\
-      <input type="text" name="weeklyHours" placeholder="Working time"><br>\
-      <input type="text" name="country" placeholder="Country"><br>\
-      <input type="text" name="city" placeholder="City"><br>\
-      <input type="text" name="merits" placeholder="Merits"><br>\
-      <input type="number" name="freePositions" placeholder="1"><br>\
-      <input type="submit" value="Add position">\
+      <form  id="addPositionForm">\
+      <input type="text" id="position" placeholder="Position"><br>\
+      <input type="text" id="weeklyHours" placeholder="Working time"><br>\
+      <input type="text" id="country" placeholder="Country"><br>\
+      <input type="text" id="city" placeholder="City"><br>\
+      <input type="text" id="merits" placeholder="Merits"><br>\
+      <input type="number" id="freePositions" placeholder="1"><br>\
+      <input type="submit" onClick="addPositionAjax()" value="Add position">\
       </form>\
       <button onClick="loadProfile()">Back</button>';
 }
+function addPositionAjax(){
+  var positionVal = document.getElementById("position").value;
+  var weeklyHoursVal = document.getElementById("weeklyHours").value;
+  var countryVal = document.getElementById("country").value;
+  var cityVal = document.getElementById("city").value;
+  var meritsVal = document.getElementById("merits").value;
+  var freePositionsVal = document.getElementById("freePositions").value;
+  $.ajax({
+    url: "../php/addPosition.php",
+    type: "POST",
+    dataType: "json",
+    data: {position: positionVal, weeklyHours: weeklyHoursVal, country: countryVal, city: cityVal, mertis: meritsVal, freePositions: freePositionsVal},
+    success: function(data) {
+      alert(data);
+    }
+  });
+}
+function updateCompanyAjax(){
+  var companyPictureVal = document.getElementById("companyPicture").value;
+  var headQuarterVal = document.getElementById("headQuarter").value;
+  var orientationVal = document.getElementById("orientation").value;
+  var descriptionVal = document.getElementById("description").value;
 
+  
+ $.ajax({
+    url: "../php/editProfile.php",
+    type: "POST",
+    dataType: "json",
+    data: {companyPicture: companyPictureVal, headQuarter: headQuarterVal, orientation: orientationVal, description: descriptionVal},
+    success: function(data){
+      alert(data);
+    }
+  });
+}
+function updateUserAjax(){
+  var ageVal = document.getElementById("age").value;
+  var cityVal = document.getElementById("city").value;
+  var educationVal = document.getElementById("education").value;
+  var profilePictureVal = document.getElementById("profilePicture").value;
+  var currentWorkVal = document.getElementById("currentWork").value;
+  var genderVal = "";
+  if(document.getElementById('genderMale').checked){
+        genderVal = document.getElementById('genderMale').value;
+  }else if(document.getElementById('genderFemale').checked){
+        genderVal = document.getElementById('genderFemale').value;
+  }else{
+    genderVal = document.getElementById('genderOther').value;
+  }
+  var meritsVal = document.getElementById("merits").value;
+  var descriptionVal = document.getElementById("description").value;
+
+  $.ajax({
+    url: "../php/editProfile.php",
+    type: "POST",
+    dataType: "json",
+    data: {age: ageVal, city: cityVal, education: educationVal, profilePicture: profilePictureVal, currentWork: currentWorkVal, gender: genderVal, merits: meritsVal, description: descriptionVal},
+    success: function(data){
+      alert(data);
+    }
+  });
+
+}
 /*
 function loadProfile(userType) {
   if(userType === "user") {
