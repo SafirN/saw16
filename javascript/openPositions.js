@@ -33,8 +33,7 @@ function loadOpenPositions() {
            </p>\
             </div>\
             <button id="applyButton">Apply!</button>\
-           </li>\
-            </div>';
+           </li>';
      }
      retString += '</ul></div>';
      document.getElementById("content").innerHTML = retString;
