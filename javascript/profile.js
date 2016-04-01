@@ -68,6 +68,7 @@ function loadProfile() {
         if(data[1] === data[0].mail){
         retString += '<div id="editInfo"> <button onClick="editCompanyProfile()"> Edit your profile</button> </div>';
         retString += '<div id="addPosition"> <button onClick="addPosition()"> Add position</button> </div>';
+        retString += '<div id="applications"> <button onClick="viewApplications()"> View applications</button> </div>';
       }
         retString += '<div id="showPositions"> <button onClick="loadOpenPositions(\'' + data[0].company+ '\')">View open positions</button> </div>';
 
@@ -120,6 +121,7 @@ function addPosition(){
       <input type="text" id="city" placeholder="City"><br>\
       <input type="text" id="merits" placeholder="Merits"><br>\
       <input type="number" id="freePositions" placeholder="1"><br>\
+      <input type="text" id="description" placeholder="Description"><br>\
       <input type="submit" onClick="addPositionAjax()" value="Add position">\
       </form>\
       <button onClick="loadProfile()">Back</button>';
@@ -131,11 +133,12 @@ function addPositionAjax(){
   var cityVal = document.getElementById("city").value;
   var meritsVal = document.getElementById("merits").value;
   var freePositionsVal = document.getElementById("freePositions").value;
+  var descriptionVal = document.getElementById("description").value;
   $.ajax({
     url: "../php/addPosition.php",
     type: "POST",
     dataType: "json",
-    data: {position: positionVal, weeklyHours: weeklyHoursVal, country: countryVal, city: cityVal, mertis: meritsVal, freePositions: freePositionsVal},
+    data: {position: positionVal, weeklyHours: weeklyHoursVal, country: countryVal, city: cityVal, mertis: meritsVal, freePositions: freePositionsVal, description: descriptionVal},
     success: function(data) {
       alert(data);
     }
@@ -185,6 +188,31 @@ function updateUserAjax(){
     }
   });
 
+}
+function viewApplications(){
+  $.ajax({
+    url: "../php/viewApplications.php",
+    type: "GET",
+    dataType: "json",
+    success: function(data){
+      var retString = '<link rel="stylesheet" type="text/css" href="css/viewApplications.css"><div id="container"><ul>';
+     for(var i = 0; i < data.length; i++) {
+          retString += '<li class="position">\
+           <div id="positionContainer">\
+             <p class="position">' + data[i].position + '</p>\
+           </div>\
+             <div id="infoTitles">\
+              <p class="infoTitle"> Applicant: </p>\
+             </div>\
+             <div id="infoText">\
+             <p class="infoText">' + data[i].userMail + '</p>\
+            </div>\
+           </li>';
+     }
+     retString += '</ul></div>';
+    document.getElementById("content").innerHTML = retString;
+    }
+  })
 }
 /*
 function loadProfile(userType) {

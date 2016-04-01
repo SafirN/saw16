@@ -17,7 +17,7 @@
     print json_encode($result);
 
   }else{
-    $prepared = $conn->prepare("SELECT company, position, weeklyHours, country, city, merits FROM openPositions");
+    $prepared = $conn->prepare("SELECT company, position, weeklyHours, country, city, merits, description FROM openPositions");
     $prepared->execute();
     while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
       array_push($result, $row);

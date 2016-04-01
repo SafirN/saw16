@@ -13,7 +13,7 @@
 		$fPositions = intval($_POST['freePositions']);
 
 
-		$prepared = $conn->prepare("INSERT INTO openPositions(company, position, weeklyHours, country, city, merits, freePositions) VALUES (?,?,?,?,?,?,?)");
+		$prepared = $conn->prepare("INSERT INTO openPositions(company, position, weeklyHours, country, city, merits, freePositions, description) VALUES (?,?,?,?,?,?,?,?)");
     	$prepared->bindParam(1, $company['company'] , PDO::PARAM_STR, strlen($company['company']));
 		$prepared->bindParam(2, $_POST['position'] , PDO::PARAM_STR, strlen($_POST['position']));
     	$prepared->bindParam(3, $_POST['weeklyHours'] , PDO::PARAM_STR, strlen($_POST['weeklyHours']));
@@ -21,6 +21,7 @@
     	$prepared->bindParam(5, $_POST['city'] , PDO::PARAM_STR, strlen($_POST['city']));
     	$prepared->bindParam(6, $_POST['merits'], PDO::PARAM_STR, strlen($_POST['merits']));
     	$prepared->bindParam(7, $fPositions, PDO::PARAM_INT);
+    	$prepared->bindParam(8, $_POST['description'], PDO::PARAM_STR, strlen($_POST['description']));
     	$prepared->execute();
 	
 ?>
