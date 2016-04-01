@@ -50,7 +50,7 @@
 			$prepared->execute();
 
 		}else{ //Company
-			$prepared = $conn->prepare("INSERT INTO companyProfiles(company, mail, orientation, companyPicture, headQuarter, description, isHiring) VALUES (?,?, 'hidden', 'hidden', 'hidden', 'hidden', true)");
+			$prepared = $conn->prepare("INSERT INTO companyProfiles(company, mail, orientation, companyPicture, headQuarter, description) VALUES (?,?, 'hidden', 'hidden', 'hidden', 'hidden')");
 			$prepared->bindParam(1, $name, PDO::PARAM_STR, strlen($name));
 			$prepared->bindParam(2, $mail, PDO::PARAM_STR, strlen($mail));
 			$prepared->execute();

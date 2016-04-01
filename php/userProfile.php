@@ -21,7 +21,7 @@
         $result = $prepared->fetch(PDO::FETCH_ASSOC);
         array_push($arr, $result);
     }else{
-        $prepared = $conn ->prepare("SELECT company, mail, orientation, companyPicture, headQuarter, description, isHiring FROM companyProfiles WHERE mail = ?");
+        $prepared = $conn ->prepare("SELECT company, mail, orientation, companyPicture, headQuarter, description FROM companyProfiles WHERE mail = ?");
         $prepared->bindParam(1, $_COOKIE['mail'], PDO::PARAM_STR, strlen($_COOKIE['mail']));
         $prepared->execute();
         $result = $prepared->fetch(PDO::FETCH_ASSOC);

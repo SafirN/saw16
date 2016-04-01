@@ -1,4 +1,3 @@
-
 function loadProfile() {
    $.ajax({
     url: "../php/userProfile.php",
@@ -68,7 +67,9 @@ function loadProfile() {
          <p id="descriptionText">' + data[0].description + '</p>';
         if(data[1] === data[0].mail){
         retString += '<div id="editInfo"> <button onClick="editCompanyProfile()"> Edit your profile</button> </div>';
+        retString += '<div id="addPosition"> <button onClick="addPosition()"> Add position</button> </div>';
       }
+        retString += '<div id="showPositions"> <button onClick="loadOpenPositions(\'' + data[0].company+ '\')">View open positions</button> </div>';
 
       }
       
@@ -106,6 +107,19 @@ function editCompanyProfile(){
       <input type="text" name="orientation" placeholder="Orientation"><br>\
       <input type="text" name="description" placeholder="Description"><br>\
       <input type="submit" value="Update Profile">\
+      </form>\
+      <button onClick="loadProfile()">Back</button>';
+}
+function addPosition(){
+    document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
+      <form action="../php/addPosition.php" method="post" id="editProfile">\
+      <input type="text" name="position" placeholder="Position"><br>\
+      <input type="text" name="weeklyHours" placeholder="Working time"><br>\
+      <input type="text" name="country" placeholder="Country"><br>\
+      <input type="text" name="city" placeholder="City"><br>\
+      <input type="text" name="merits" placeholder="Merits"><br>\
+      <input type="number" name="freePositions" placeholder="1"><br>\
+      <input type="submit" value="Add position">\
       </form>\
       <button onClick="loadProfile()">Back</button>';
 }

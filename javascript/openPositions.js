@@ -1,8 +1,9 @@
-function loadOpenPositions() {
+function loadOpenPositions(company) {
   $.ajax({
     url: "../php/openPositions.php",
-    type: "GET",
+    type: "POST",
     dataType:"json",
+    data: {company: company},
     success: function(data) {
      var retString = '<link rel="stylesheet" type="text/css" href="css/positions.css"><div id="container"><ul>';
      for(var i = 0; i < data.length; i++) {
