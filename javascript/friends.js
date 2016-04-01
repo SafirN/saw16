@@ -14,6 +14,9 @@ function loadFriends() {
 																</li>';
 							    	}
 							    	retString += '</ul></div>';
+							    	document.getElementById("search").innerHTML = '<form action="search.php" method="get">\
+ 	 									<input id="searchField" type="search" name="search" placeholder="Filter friends"><input id="submitSearch" type="submit" value="Go!">\
+ 	 									</form>';
 												document.getElementById("content").innerHTML = retString;
 								}
 				});
