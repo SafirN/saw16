@@ -4,17 +4,19 @@
   SAW - jobs for murderers
  </title>
   <head>
-   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
    <script type="text/javascript" src="../javascript/login.js"></script>
    <script type="text/javascript" src="../javascript/profile.js"></script>
    <script type="text/javascript" src="../javascript/openPositions.js"></script>
    <script type="text/javascript" src="../javascript/filledPositions.js"></script>
    <script type="text/javascript" src="../javascript/friends.js"></script>
    <script type="text/javascript" src="../javascript/bar.js"></script>
+   <script type="text/javascript" src="../javascript/spc.js"></script>
    <link rel="stylesheet" type="text/css" href="css/index.css">
+   <link rel="stylesheet" type="text/css" href="css/frame.css">
   </head>
   <body>
-   <link rel="stylesheet" type="text/css" href="css/frame.css">
+   
    <div id="topBackground">
     <div id="banner">
      <img src="img/banner.png" alt="banner">

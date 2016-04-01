@@ -2,7 +2,7 @@ function loadProfile() {
    $.ajax({
     url: "../php/userProfile.php",
     type: "GET",
-    dataType:"json",
+    dataType: "json",
     success: function(data) {
       var retString = "";
       if(data[2] === "user"){
@@ -75,9 +75,9 @@ function loadProfile() {
       }
       
       retString += '</div>';
-      document.getElementById("search").innerHTML = '<form action="search.php" method="get">\
-        <input id="searchField" type="search" name="search" placeholder="Find person/company"><input id="submitSearch" type="submit" value="Go!">\
-        </form>';
+      document.getElementById("search").innerHTML = '<form id="personCompanySearchForm">\
+                <input id="searchField" type="search" name="search" placeholder="Find person/company"><button id="submitSearch" type="button" onClick="searchPersonCompany(document.getElementById(\'searchField\').value)">Go!</button>\
+                </form>';
       document.getElementById("content").innerHTML = retString;
 
     } //end of success
@@ -273,3 +273,39 @@ function loadProfile(userType) {
   }); //end of AJAX
 }
 */
+
+function searchPersonCompany(searchStr) {
+    var retStr = '<link rel="stylesheet" type="text/css" href="css/personCompanySearchResults.css"><h2>People</h2><div id="container"><ul>';
+    //PEOPLE
+    $.ajax({
+      url: "../php/sp.php",
+      data: { data: searchStr },
+      type: "GET",
+      dataType: "json",
+      success: function(data) {
+        for(var i = 0; i < data.length; i++) {
+          retStr += '<li class="personCell">\
+          <p class="personName">' + data[i].name + '</p>\
+          </li>';
+        }
+        retStr += '</ul></div>';
+      }
+    });
+    //COMPANIES
+    $.ajax({
+      url: "../php/sc.php",
+      data: { data: searchStr },
+      type: "GET",
+      dataType: "json",
+      success: function(data) {
+        retStr += '<br><h2>Companies</h2><div id="container"><ul>';
+        for(var i = 0; i < data.length; i++) {
+          retStr += '<li class="companyCell">\
+          <p class="companyName">' + data[i].company + '</p>\
+          </li>';
+        }
+        retStr += '</ul></div>';
+        document.getElementById("content").innerHTML = retStr;
+      }
+    });
+}
