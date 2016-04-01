@@ -8,6 +8,7 @@ function loadOpenPositions(company) {
      var retString = '<link rel="stylesheet" type="text/css" href="css/positions.css"><div id="container"><ul>';
      for(var i = 0; i < data.length; i++) {
           retString += '<li class="positionList">\
+           <button id="applyButton" onClick="applyButton(\'' + data[i].company  +'\',\'' + data[i].position + '\')">Apply!</button>\
             <div id="companyLogo">\
              Logo\
             </div>\
@@ -30,10 +31,9 @@ function loadOpenPositions(company) {
              <p class="infoText">' + data[i].merits + '</p>\
             </div>\
             <div id="descriptionContainer">\
-            <p class="descriptionText"> <strong>Description:</strong> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor qui is unde omnis iste natus error sit voluptatem accusantium dolor qui is unde omnis iste natus error sit voluptatem accusantium dolor quiis unde omnis iste natus error sit voluptatem accusantium dolor qui is unde omnis iste natus error sit voluptatem accusantium dolor qui  in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\
+            <p class="descriptionText"> <strong>Description:</strong>' + data[i].description + '?\
            </p>\
             </div>\
-            <button id="applyButton">Apply!</button>\
            </li>';
      }
      retString += '</ul></div>';
@@ -41,6 +41,18 @@ function loadOpenPositions(company) {
                 <input id="searchField" type="search" name="search" placeholder="Filter open positions"><button id="submitSearch" type="button" onClick="searchOpenPositions(document.getElementById("searchField").value)">Go!</button>\
                 </form>';
       document.getElementById("content").innerHTML = retString;
+    }
+  });
+}
+
+function applyButton(company, position){
+ $.ajax({
+    url: "../php/applyPosition.php",
+    type: "POST",
+    dataType: "json",
+    data: {company: company, position: position},
+    success: function(data){
+      alert(data);
     }
   });
 }
