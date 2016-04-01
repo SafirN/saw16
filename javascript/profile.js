@@ -74,6 +74,9 @@ function loadProfile() {
       }
       
       retString += '</div>';
+      document.getElementById("search").innerHTML = '<form action="search.php" method="get">\
+        <input id="searchField" type="search" name="search" placeholder="Find person/company"><input id="submitSearch" type="submit" value="Go!">\
+        </form>';
       document.getElementById("content").innerHTML = retString;
 
     } //end of success
