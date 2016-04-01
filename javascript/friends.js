@@ -6,7 +6,6 @@ function loadFriends() {
 				    success: function(data) {
 							    	var retString = '<link rel="stylesheet" type="text/css" href="css/friends.css"><div id="container"><ul id="friendList">';
 							    	for(var i = 0; i < data.length; i++) {
-							    		
 							    					retString += '<li class="friendCell">\
 																<p class="friendName">' + data[i].name + '</p>\
 																<p class="date"> Friends since: ' + data[i].date + '</p>\
@@ -14,9 +13,9 @@ function loadFriends() {
 																</li>';
 							    	}
 							    	retString += '</ul></div>';
-							    	document.getElementById("search").innerHTML = '<form action="search.php" method="get">\
- 	 									<input id="searchField" type="search" name="search" placeholder="Filter friends"><input id="submitSearch" type="submit" value="Go!">\
- 	 									</form>';
+							    	document.getElementById("search").innerHTML = '<form id="friendSearchForm">\
+        				<input id="searchField" type="search" name="search" placeholder="Filter friends"><button id="submitSearch" type="button" onClick="searchFriends(document.getElementById(\'searchField\').value)">Go!</button>\
+        				</form>';
 												document.getElementById("content").innerHTML = retString;
 								}
 				});
@@ -35,4 +34,25 @@ function removeFriend(unfriend) {
 				} else {
  
 				}
+}
+
+function searchFriends(searchStr) {
+	$.ajax({
+		url: "../php/sf.php",
+		data: { data: searchStr },
+		type: "GET",
+		dataType: "json",
+		success: function(data) {
+			var retStr = '<link rel="stylesheet" type="text/css" href="css/friendSearchResults.css"><div id="container"><ul>';
+			for(var i = 0; i < data.length; i++) {
+				retStr += '<li class="friendCell">\
+				<p class="friendName">' + data[i].name + '</p>\
+				<p class="date"> Friends since: ' + data[i].date + '</p>\
+				<button onClick="removeFriend(\'' + data[i].friendMail + '\')">Unfriend</button>\
+				</li>';
+			}
+			retStr += '</ul></div>';
+			document.getElementById("content").innerHTML = retStr;
+		}
+	});
 }
