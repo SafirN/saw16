@@ -29,7 +29,7 @@
 			$prepared->execute();
 			$result = $prepared->fetch(PDO::FETCH_ASSOC);
 			setcookie('mail', $mail, time()+ (86400 * 30), "/");
-			setcookie('type', $result['type'], time()+ (86400 * 30), "/");
+			setcookie('userType', $result['type'], time()+ (86400 * 30), "/");
 		}else{
 		}
 	}
