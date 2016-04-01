@@ -207,6 +207,13 @@ function viewApplications(){
              <div id="infoText">\
              <p class="infoText">' + data[i].userMail + '</p>\
             </div>\
+            <form id="applicantForm">\
+              <input class="radioButtons" type="radio" id="genderMale" value="Male"> Male\
+              <input class="radioButtons" type="radio" id="genderFemale" value="Female"> Female<br>\
+               <input type="submit" onClick="addPositionAjax()" value="Add position"><br>\
+               <button onClick="loadProfile()">Back</button>\
+              </form>\
+            </form>\
            </li>';
      }
      retString += '</ul></div>';
