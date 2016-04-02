@@ -6,8 +6,7 @@ function loadProfile() {
     success: function(data) {
       var retString = "";
       if(data[2] === "user"){
-        retString += '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
-        <div id="container">\
+        retString += '<div id="container">\
          Shit is real\
           <div id="profilePicture">\
               <img id="userPicture" alt="Ingen bild, sorry!" src="' + data[0].profilePicture + '">\
@@ -42,8 +41,7 @@ function loadProfile() {
       }
         
       }else{
-         retString += '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
-        <div id="container">\
+         retString += '<div id="container">\
          Shit is real\
           <div id="profilePicture">\
               <img id="userPicture" alt="Ingen bild, sorry!" src="' + data[0].companyPicture + '">\
@@ -301,4 +299,45 @@ function searchPersonCompany(searchStr) {
         document.getElementById("content").innerHTML = retStr;
       }
     });
+}
+
+
+function viewApplications(){
+  $.ajax({
+    url: "../php/viewApplications.php",
+    type: "GET",
+    dataType: "json",
+    success: function(data){
+      var retString = '<link rel="stylesheet" type="text/css" href="css/viewApplications.css"><div id="container"><ul>';
+     for(var i = 0; i < data.length; i++) {
+          retString += '<li class="position">\
+           <div id="positionContainer">\
+             <p class="position">' + data[i].position + '</p>\
+           </div>\
+             <div id="infoTitles">\
+              <p class="infoTitle"> Applicant: </p>\
+             </div>\
+             <div id="infoText">\
+             <p class="infoText">' + data[i].userMail + '</p>\
+            </div>\
+            <div id="applications"> <button onClick="viewApplications(\'' + data[i].company  +'\',\'' + data[i].position + '\', \'accept\')">Accept</button> </div>\
+            <div id="applications"> <button onClick="viewApplications(\'' + data[i].company  +'\',\'' + data[i].position + '\', decline)">Decline</button> </div>\
+           </li>';
+     }
+     retString += '</ul></div>';
+    document.getElementById("content").innerHTML = retString;
+    }
+  })
+}
+function applicantFormAjax(userMail, position, option){
+  alert(option);
+    $.ajax({
+      url: "../php/manageApplication.php",
+      type: "POST",
+      dataType: "json",
+      data: {option: option, userMail: userMail, position: position},
+      success: function(data){
+        alert(data);
+    }
+  });
 }
