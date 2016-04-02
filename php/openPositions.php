@@ -8,7 +8,7 @@
 
   $result = array();
   if(!empty($_POST['company'])){
-    $prepared = $conn->prepare("SELECT company, position, weeklyHours, country, city, merits FROM openPositions WHERE company = ?");
+    $prepared = $conn->prepare("SELECT company, position, weeklyHours, country, city, merits, description FROM openPositions WHERE company = ?");
     $prepared->bindParam(1, $_POST['company'], PDO::PARAM_STR, strlen($_POST['company']));
     $prepared->execute();
     while($row = $prepared->fetch(PDO::FETCH_ASSOC)){

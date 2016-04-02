@@ -15,10 +15,11 @@
 
     if($freePositions['freePositions'] > 0){
 		//Minska 1 på free position
-		$prepared = $conn->prepare("UPDATE openPositions SET freePositions = freePositions - 1 WHERE company = ? AND position = ? AND freePositions > 0");
+		/*$prepared = $conn->prepare("UPDATE openPositions SET freePositions = freePositions - 1 WHERE company = ? AND position = ? AND freePositions > 0");
 	    $prepared->bindParam(1, $_POST['company'], PDO::PARAM_STR, strlen($_POST['company']));
 	    $prepared->bindParam(2, $_POST['position'], PDO::PARAM_STR, strlen($_POST['position']));
 	    $prepared->execute();
+	    */
 	    //Hämta comp mail
 	    $prepared = $conn->prepare("SELECT mail FROM companyProfiles WHERE company = ?");
 	    $prepared->bindParam(1, $_POST['company'], PDO::PARAM_STR, strlen($_POST['company']));

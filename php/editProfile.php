@@ -9,45 +9,51 @@
     $conn->query("USE saw16"); // Selecting db
 
     if(strcmp($_COOKIE['userType'], "user") == 0){
+
+        $prepared = $conn->prepare("SELECT name, mail, profilePicture, currentWork, gender, education, age, description, merits, city FROM userProfiles WHERE mail = ?");
+        $prepared->bindParam(1, $_COOKIE['mail'], PDO::PARAM_STR, strlen($_COOKIE['mail']));
+        $prepared->execute();
+        $result = $prepared->fetch(PDO::FETCH_ASSOC);
+
     	if(strlen($_POST['profilePicture']) > 0){
     		$profilePicture = $_POST['profilePicture'];
     	}else{
-    		$profilePicture = "hidden";
+    		$profilePicture = $result['profilePicture'];
     	}
     	if(strlen($_POST['currentWork']) > 0){
     		$currentWork = $_POST['currentWork'];
     	}else{
-    		$currentWork = "hidden";
+    		$currentWork = $result['currentWork'];
     	}
     	if(strlen($_POST['gender']) > 0){
     		$gender = $_POST['gender'];
     	}else{
-    		$gender = "hidden";
+    		$gender = $result['gender'];
     	}
     	if(strlen($_POST['education']) > 0){
     		$education = $_POST['education'];
     	}else{
-    		$education = "hidden";
+    		$education = $result['education'];
     	}
     	if(strlen($_POST['age']) > 0){
     		$age = intval($_POST['age']);
     	}else{
-    		$age = 0;
+    		$age = $result['age'];
     	}
     	if(strlen($_POST['merits']) > 0){
     		$merits = $_POST['merits'];
     	}else{
-    		$merits = "hidden";
+    		$merits = $result['merits'];
     	}
     	if(strlen($_POST['city']) > 0){
     		$city = $_POST['city'];
     	}else{
-    		$city = "hidden";
+    		$city = $result['city'];
     	}
-    	if(strlen($_POST['description']) > 0){
+    	if(strlen($_POST['description']) > 0){ 
     		$description = $_POST['description'];
     	}else{
-    		$description = "hidden";
+    		$description = $result['description'];
     	}
 
     	$prepared = $conn->prepare("UPDATE userProfiles SET profilePicture = ?, currentWork = ?, gender = ?, education = ?, age = ?, description = ?, merits = ?, city = ? WHERE mail = ?");
@@ -61,28 +67,32 @@
     	$prepared->bindParam(8, $city, PDO::PARAM_STR, strlen($city));
     	$prepared->bindParam(9, $_COOKIE['mail'] , PDO::PARAM_STR, strlen($_COOKIE['mail']));
     	$prepared->execute();
-    }else{    	  
+    }else{
+
+        $prepared = $conn->prepare("SELECT company, mail, orientation, companyPicture, headQuarter, description FROM companyProfiles WHERE mail = ?");
+        $prepared->bindParam(1, $_COOKIE['mail'], PDO::PARAM_STR, strlen($_COOKIE['mail']));
+        $prepared->execute();
+        $result = $prepared->fetch(PDO::FETCH_ASSOC);    	  
     	if(strlen($_POST['companyPicture']) > 0){
     		$companyPicture = $_POST['companyPicture'];
     	}else{
-    		$companyPicture = "hidden";
+    		$companyPicture = $result['companyPicture'];
     	}
     	if(strlen($_POST['headQuarter']) > 0){
     		$headQuarter = $_POST['headQuarter'];
     	}else{
-    		$headQuarter = "hidden";
+    		$headQuarter = $result['headQuarter'];
     	}
     	if(strlen($_POST['orientation']) > 0){
     		$orientation = $_POST['orientation'];
     	}else{
-    		$orientation = "hidden";
+    		$orientation = $result['orientation'];
     	}
     	if(strlen($_POST['description']) > 0){
     		$description = $_POST['description'];
-                 print json_encode("kom till company");
            //   print json_encode("hitade description");
     	}else{
-    		$description = "hidden";
+    		$description = $result['description'];
     	}
 
     	$prepared = $conn->prepare("UPDATE companyProfiles SET orientation = ?, companyPicture = ?, headQuarter = ?, description = ? WHERE mail = ?");
