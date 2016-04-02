@@ -11,10 +11,10 @@
    <script type="text/javascript" src="../javascript/filledPositions.js"></script>
    <script type="text/javascript" src="../javascript/friends.js"></script>
    <script type="text/javascript" src="../javascript/bar.js"></script>
-   <script type="text/javascript" src="../javascript/spc.js"></script>
    <link rel="stylesheet" type="text/css" href="css/index.css">
    <link rel="stylesheet" type="text/css" href="css/positions.css">
-   <link rel="stylesheet" type="text/css" href="css/profile.css">
+   <link rel="stylesheet" type="text/css" href="css/userProfile.css">
+   <link rel="stylesheet" type="text/css" href="css/companyProfile">
    <link rel="stylesheet" type="text/css" href="css/friends.css">
    <link rel="stylesheet" type="text/css" href="css/filledPositions.css">
    <link rel="stylesheet" type="text/css" href="css/frame.css">
