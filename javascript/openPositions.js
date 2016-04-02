@@ -57,8 +57,9 @@ function applyButton(company, position){
   });
 }
 
-$.ajax({
-    url: "../php/sf.php",
+function searchOpenPositions(searchStr) {
+  $.ajax({
+    url: "../php/sop.php",
     data: { data: searchStr },
     type: "GET",
     dataType: "json",
@@ -98,3 +99,4 @@ $.ajax({
       document.getElementById("content").innerHTML = retStr;
     }
   });
+}

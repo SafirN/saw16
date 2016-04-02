@@ -15,11 +15,11 @@
    <link rel="stylesheet" type="text/css" href="css/index.css">
    <link rel="stylesheet" type="text/css" href="css/positions.css">
    <link rel="stylesheet" type="text/css" href="css/profile.css">
+   <link rel="stylesheet" type="text/css" href="css/friends.css">
    <link rel="stylesheet" type="text/css" href="css/filledPositions.css">
    <link rel="stylesheet" type="text/css" href="css/frame.css">
   </head>
   <body>
-   
    <div id="topBackground">
     <div id="banner">
      <img src="img/banner.png" alt="banner">
