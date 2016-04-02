@@ -40,7 +40,7 @@ function searchFilledPositions(searchStr) {
 		type: "GET",
 		dataType: "json",
 		success: function(data) {
-			var retStr = '<div id="container"><ul>';
+			var retString = '<div id="container"><ul>';
 			for(var i = 0; i < data.length; i++) {
 				retString += '<li class="filledPositions">\
   	  				<div id="companyLogo">' + data[i].companyPicture + '</div>\
@@ -58,8 +58,8 @@ function searchFilledPositions(searchStr) {
 					</div>\
 					</li>';
 			}
-			retStr += '</ul></div>';
-			document.getElementById("content").innerHTML = retStr;
+			retString += '</ul></div>';
+			document.getElementById("content").innerHTML = retString;
 		}
 	});
 }

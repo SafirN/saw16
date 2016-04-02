@@ -64,7 +64,7 @@ function searchOpenPositions(searchStr) {
     type: "GET",
     dataType: "json",
     success: function(data) {
-      var retStr = '<div id="container"><ul>';
+      var retString = '<div id="container"><ul>';
       for(var i = 0; i < data.length; i++) {
         retString += '<li class="positionList">\
            <button id="applyButton" onClick="applyButton(\'' + data[i].company  +'\',\'' + data[i].position + '\')">Apply!</button>\
@@ -95,8 +95,8 @@ function searchOpenPositions(searchStr) {
             </div>\
            </li>';
       }
-      retStr += '</ul></div>';
-      document.getElementById("content").innerHTML = retStr;
+      retString += '</ul></div>';
+      document.getElementById("content").innerHTML = retString;
     }
   });
 }
