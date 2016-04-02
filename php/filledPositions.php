@@ -4,7 +4,6 @@
   //Create connection
   $conn = new PDO($serverName, $username, $pw);
   $conn->query("USE saw16"); // Selecting db
-
   $prepared = $conn->prepare("SELECT filledPositions.company, filledPositions.position, filledPositions.datetime, filledPositions.weeklyHours, companyProfiles.companyPicture FROM filledPositions INNER JOIN companyProfiles ON filledPositions.company = companyProfiles.company");
   $prepared->execute();
   $result = array();
