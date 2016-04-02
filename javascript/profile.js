@@ -328,35 +328,6 @@ function searchPersonCompany(searchStr) {
       }
     });
 }
-
-
-function viewApplications(){
-  $.ajax({
-    url: "../php/viewApplications.php",
-    type: "GET",
-    dataType: "json",
-    success: function(data){
-      var retString = '<link rel="stylesheet" type="text/css" href="css/viewApplications.css"><div id="container"><ul>';
-     for(var i = 0; i < data.length; i++) {
-          retString += '<li class="position">\
-           <div id="positionContainer">\
-             <p class="position">' + data[i].position + '</p>\
-           </div>\
-             <div id="infoTitles">\
-              <p class="infoTitle"> Applicant: </p>\
-             </div>\
-             <div id="infoText">\
-             <p class="infoText">' + data[i].userMail + '</p>\
-            </div>\
-            <div id="applications"> <button onClick="viewApplications(\'' + data[i].company  +'\',\'' + data[i].position + '\', \'accept\')">Accept</button> </div>\
-            <div id="applications"> <button onClick="viewApplications(\'' + data[i].company  +'\',\'' + data[i].position + '\', decline)">Decline</button> </div>\
-           </li>';
-     }
-     retString += '</ul></div>';
-    document.getElementById("content").innerHTML = retString;
-    }
-  })
-}
 function applicantFormAjax(userMail, position, option){
   alert(option);
     $.ajax({
