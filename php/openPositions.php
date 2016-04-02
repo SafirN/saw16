@@ -23,6 +23,5 @@
       array_push($result, $row);
     }
     print json_encode($result);
-    
   }
 ?>

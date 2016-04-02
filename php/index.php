@@ -13,6 +13,9 @@
    <script type="text/javascript" src="../javascript/bar.js"></script>
    <script type="text/javascript" src="../javascript/spc.js"></script>
    <link rel="stylesheet" type="text/css" href="css/index.css">
+   <link rel="stylesheet" type="text/css" href="css/positions.css">
+   <link rel="stylesheet" type="text/css" href="css/profile.css">
+   <link rel="stylesheet" type="text/css" href="css/filledPositions.css">
    <link rel="stylesheet" type="text/css" href="css/frame.css">
   </head>
   <body>
