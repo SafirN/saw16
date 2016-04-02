@@ -38,7 +38,7 @@ function loadOpenPositions(company) {
      }
      retString += '</ul></div>';
       document.getElementById("search").innerHTML = '<form id="openPositionsSearchForm">\
-                <input id="searchField" type="search" name="search" placeholder="Filter open positions"><button id="submitSearch" type="button" onClick="searchOpenPositions(document.getElementById("searchField").value)">Go!</button>\
+                <input id="searchField" type="search" name="search" placeholder="Filter open positions"><button id="submitSearch" type="button" onClick="searchOpenPositions(document.getElementById(\'searchField\').value)">Go!</button>\
                 </form>';
       document.getElementById("content").innerHTML = retString;
     }
