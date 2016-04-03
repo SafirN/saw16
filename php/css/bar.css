@@ -1,0 +1,61 @@
+button:hover {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+button:active {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+button:visited {
+	background-color: #000000;
+	color: #000000;
+}
+
+#bar {
+	display: block;
+}
+
+#navButtons {
+	vertical-align: top;
+	width: 80%;
+	display: inline-block;
+}
+
+.barButton {
+	width: 25%;
+	height: 30px;
+	border: 1px solid #69E071;
+	background-color: #69E071;
+	color: #FFFFFF;
+	font-family: Helvetica;
+	outline: none;
+}
+
+#search {
+	display: inline-block;
+	vertical-align: top;
+	width: 19.7%;
+}
+
+#searchField {
+	width: 80%;
+	height: 28px;
+	font-size: 11pt;
+	background-color: #FFFFFF;
+	border: 1px solid #69E071;
+	outline: none;
+	margin-top: 1px;
+}
+
+#submitSearch {
+	vertical-align: top;
+	width: 20%;
+	height: 30px;
+	background-color: #69E071;
+	border: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	font-family: Helvetica;
+	text-align: center;
+}
