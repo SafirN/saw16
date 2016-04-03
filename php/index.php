@@ -23,6 +23,8 @@
     <div id="topBackground">
       <div id="banner">
         <img src="img/banner.png" alt="banner">
+        <h2>Jobbkontakt</h2>
+        <h4>- Alternativet till arbetsförnedringen</h4>
       </div>
       <div id="bar">
       </div>

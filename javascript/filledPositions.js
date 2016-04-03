@@ -4,28 +4,19 @@ function loadFilledPositions() {
 		type: "GET",
 		dataType: "json",
 		success: function(data) {
-			var retString = '<div id="container"><ul>';
+			var retString = '<ul>';
 			for(var i = 0; i < data.length; i++) {
-				retString += '<li class="filledPositions">\
-  	  				<div id="companyLogo">' + data[i].companyPicture + '</div>\
-					<div id="companyName">\
-						<p class="companyTitle">' + data[i].company + '</p>\
-					</div>\
-					<div id="positionContainer">\
-						<p class="position">' + data[i].position + '</p>\
-					</div>\
-					<div id="hoursContainer">\
-						<p class="hours">' + data[i].weeklyHours + '</p>\
-					</div>\
-					<div id="dateContainer">\
-						<p class="date">' + data[i].date + '</p>\
-					</div>\
-					</li>';
+				retString += '<li class="filledPositionsCell">\
+    			<div><img src=\'' + data[i].companyPicture + '\'><p>' + data[i].company + '</p></div>\
+			    <div><p>Position</p><p>' + data[i].position + '</p></div>\
+			    <div><p>Hours</p><p>' + data[i].weeklyHours + '</p></div>\
+			    <div><p>Starting</p><p>' + data[i].date + '</p></div>\
+				</li>';
+					
 			}
-  	 		retString += '</ul></div>';
+  	 		retString += '</ul>';
   	 		document.getElementById("search").innerHTML = '<form id="filledPositionsSearchForm">\
-        				<input id="searchField" type="search" name="search" placeholder="Filter filled positions">\
-        				<button id="submitSearch" type="button" onClick="searchFilledPositions(document.getElementById(\'searchField\').value">Go!</button>\
+        				<input id="searchField" type="search" name="search" placeholder="Filter filled positions"><button id="submitSearch" type="button" onClick="searchFilledPositions(document.getElementById(\'searchField\').value">Go!</button>\
         				</form>';
   			document.getElementById("content").innerHTML = retString;
 		}
