@@ -1,11 +1,12 @@
-function loadProfile() {
+function loadProfile(mail) {
    $.ajax({
     url: "../php/userProfile.php",
-    type: "GET",
+    type: "POST",
+    data: {searchMail: mail},
     dataType: "json",
     success: function(data) {
       var retString = "";
-      if(data[2] === "user"){
+      if(data[3] === "user"){
         retString += '<div id="container">\
          Shit is real\
           <div id="profilePicture">\
@@ -36,10 +37,18 @@ function loadProfile() {
         </div>\
         <div id="descriptionContainer">\
          <p id="descriptionText">' + data[0].description + '</p>';
-        if(data[1] === data[0].mail){
-        retString += '<div id="editInfo"> <button onClick="editUserProfile()"> Edit your profile</button> </div>';
-      }
-        
+        if(data[2] === data[0].mail){
+            retString += '<div id="editInfo"> <button onClick="editUserProfile()"> Edit your profile</button> </div>';
+        }else if(data[1].length === 0){
+            retString += '<div id="editInfo"> <button onClick="addFollow(\'' + data[0].mail + '\')">Follow</button> </div>';
+        }else{
+            for(var i = 0; i < data[1].length; i++){
+              if(data[1][i].followingMail != data[0].mail){
+                  retString += '<div id="editInfo"> <button onClick="addFollow(\'' + data[0].mail + '\')">Follow</button> </div>';
+                  break; 
+              }
+            }
+        }     
       }else{
          retString += '<div id="container">\
          Shit is real\
@@ -67,7 +76,7 @@ function loadProfile() {
         retString += '<div id="editInfo"> <button onClick="editCompanyProfile()"> Edit your profile</button> </div>';
         retString += '<div id="addPosition"> <button onClick="addPosition()"> Add position</button> </div>';
         retString += '<div id="applications"> <button onClick="viewApplications()"> View applications</button> </div>';
-      }
+        }
         retString += '<div id="showPositions"> <button onClick="loadOpenPositions(\'' + data[0].company+ '\')">View open positions</button> </div>';
 
       }
@@ -80,6 +89,17 @@ function loadProfile() {
 
     } //end of success
   }); //end of AJAX
+}
+function addFollow(follow){
+  $.ajax({
+      url: "../php/addFollow.php",
+      type: "POST",
+      data: {follow: follow},
+      dataType: "json",
+      success: function(data){
+        alert(data);
+    }
+  });
 }
 function editUserProfile(){
   document.getElementById("content").innerHTML = '<link rel="stylesheet" type="text/css" href="css/userProfile.css">\
@@ -294,7 +314,7 @@ function loadProfile(userType) {
 */
 
 function searchPersonCompany(searchStr) {
-    var retStr = '<link rel="stylesheet" type="text/css" href="css/personCompanySearchResults.css"><h2>People</h2><div id="container"><ul>';
+    var retStr = '<link rel="stylesheet" type="text/css" href="css/personCompanySearch.css">';
     //PEOPLE
     $.ajax({
       url: "../php/sp.php",
@@ -304,10 +324,10 @@ function searchPersonCompany(searchStr) {
       success: function(data) {
         for(var i = 0; i < data.length; i++) {
           retStr += '<li class="personCell">\
-          <p class="personName">' + data[i].name + '</p>\
+          <p class="personName" onClick="loadProfile(\'' + data[i].mail + '\')">' + data[i].name + '</p>\
           </li>';
         }
-        retStr += '</ul></div>';
+        retStr += '</ul>';
       }
     });
     //COMPANIES
@@ -317,13 +337,13 @@ function searchPersonCompany(searchStr) {
       type: "GET",
       dataType: "json",
       success: function(data) {
-        retStr += '<br><h2>Companies</h2><div id="container"><ul>';
+        retStr += '<br><ul>';
         for(var i = 0; i < data.length; i++) {
           retStr += '<li class="companyCell">\
-          <p class="companyName">' + data[i].company + '</p>\
+          <p class="companyName" onClick="loadProfile(\'' + data[i].mail + '\')">' + data[i].company + '</p>\
           </li>';
         }
-        retStr += '</ul></div>';
+        retStr += '</ul>';
         document.getElementById("content").innerHTML = retStr;
       }
     });

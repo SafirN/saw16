@@ -1,4 +1,4 @@
-function loadFriends() {
+function loadFollowers() {
 				$.ajax({
 				    url: "../php/friends.php",
 				    type: "GET",
@@ -9,26 +9,26 @@ function loadFriends() {
 							    					retString += '<li class="friendCell">\
 																<p class="friendName">' + data[i].name + '</p>\
 																<p class="date"> Friends since: ' + data[i].date + '</p>\
-																<button onClick="removeFriend(\'' + data[i].friendMail + '\')">Unfriend</button>\
+																<button onClick="removeFollow(\'' + data[i].followingMail + '\')">Unfollow</button>\
 																</li>';
 							    	}
 							    	retString += '</ul></div>';
 							    	document.getElementById("search").innerHTML = '<form id="friendSearchForm">\
-        				<input id="searchField" type="search" name="search" placeholder="Filter friends"><button id="submitSearch" type="button" onClick="searchFriends(document.getElementById(\'searchField\').value)">Go!</button>\
+        				<input id="searchField" type="search" name="search" placeholder="Filter friends"><button id="submitSearch" type="button" onClick="searchFollowers(document.getElementById(\'searchField\').value)">Go!</button>\
         				</form>';
 												document.getElementById("content").innerHTML = retString;
 								}
 				});
 }
 
-function removeFriend(unfriend) {
-				if (confirm("Are you sure you want to remove " + unfriend + "?")) {
+function removeFollow(unfollow) {
+				if (confirm("Are you sure you want to remove " + unfollow + "?")) {
     	$.ajax({
 						url: "../php/removeFriend.php",
 						type: "POST",
-						data: {data:unfriend},
+						data: {data:unfollow},
 						success: function(data) {
-										loadFriends();
+										loadFollowers();
 						}
 				});
 				} else {
@@ -36,7 +36,7 @@ function removeFriend(unfriend) {
 				}
 }
 
-function searchFriends(searchStr) {
+function searchFollowers(searchStr) {
 	$.ajax({
 		url: "../php/sf.php",
 		data: { data: searchStr },
@@ -48,7 +48,7 @@ function searchFriends(searchStr) {
 				retStr += '<li class="friendCell">\
 				<p class="friendName">' + data[i].name + '</p>\
 				<p class="date"> Friends since: ' + data[i].date + '</p>\
-				<button onClick="removeFriend(\'' + data[i].friendMail + '\')">Unfriend</button>\
+				<button onClick="removeFriend(\'' + data[i].followingMail + '\')">Unfriend</button>\
 				</li>';
 			}
 			retStr += '</ul></div>';

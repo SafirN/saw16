@@ -5,7 +5,7 @@
   $conn = new PDO($serverName, $username, $pw);
   $conn->query("USE saw16"); // Selecting db
 
-  $prepared = $conn->prepare("SELECT name, datetime, friendMail FROM userFriends INNER JOIN userProfiles ON userFriends.friendMail = userProfiles.mail WHERE userFriends.mail = ?");
+  $prepared = $conn->prepare("SELECT name, datetime, followingMail FROM followers INNER JOIN userProfiles ON followers.followingMail = userProfiles.mail WHERE followers.mail = ?");
   $prepared->bindParam(1, $_COOKIE['mail'], PDO::PARAM_STR, strlen($_COOKIE['mail']));
   $prepared->execute();
   $result = array();
