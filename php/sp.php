@@ -4,7 +4,7 @@
   //Create connection
   $conn = new PDO($serverName, $username, $pw);
   $conn->query("USE saw16"); // Selecting db
-  $prepared = $conn->prepare("SELECT name FROM userProfiles");
+  $prepared = $conn->prepare("SELECT name, mail FROM userProfiles");
   $prepared->execute();
   $result = array();
   while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
