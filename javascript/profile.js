@@ -307,8 +307,8 @@ function loadProfile(userType) {
 */
 
 function searchPersonCompany() {	
-	var searchStr = document.getElementById("searchField").value;
-    var retStr = "<ul>";
+	 var searchStr = document.getElementById("searchField").value;
+    var retString = "<ul>";
     //PEOPLE
     $.ajax({
       url: "../php/sp.php",
@@ -317,11 +317,13 @@ function searchPersonCompany() {
       dataType: "json",
       success: function(data) {
         for(var i = 0; i < data.length; i++) {
-          retStr += '<li class="personCell">\
-          <p class="personName" onClick="loadProfile(\'' + data[i].mail + '\')">' + data[i].name + '</p>\
+          retString += '<li class="searchCell">\
+          <div>\
+            <p onClick="loadProfile(\'' + data[i].mail + '\')">' + data[i].name + '</p>\
+          </div>\
           </li>';
         }
-        retStr += '</ul>';
+        retString += '</ul>';
       }
     });
     //COMPANIES
@@ -331,17 +333,19 @@ function searchPersonCompany() {
       type: "GET",
       dataType: "json",
       success: function(data) {
-        retStr += '<br><ul>';
+        retString += '<ul>';
         for(var i = 0; i < data.length; i++) {
-          retStr += '<li class="companyCell">\
-          <p class="companyName" onClick="loadProfile(\'' + data[i].mail + '\')">' + data[i].company + '</p>\
+          retString += '<li class="searchCell">\
+          <div>\
+            <p onClick="loadProfile(\'' + data[i].mail + '\')">' + data[i].company + '</p>\
+          </div>\
           </li>';
         }
-        retStr += '</ul>';
+        retString += '</ul>';
         document.getElementById("search").innerHTML = '<form onsubmit="return searchPersonCompany()">\
                 <input id="searchField" type="text" name="search" placeholder="Find person/company"><input id="submitSearch" type="submit" onClick="searchPersonCompany()" value="Go!")>\
                 </form>';
-        document.getElementById("content").innerHTML = retStr;
+        document.getElementById("content").innerHTML = retString;
       }
     });
     return false;
