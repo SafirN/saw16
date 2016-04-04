@@ -50,7 +50,7 @@
         	retString += '<div id="contentHead">\
         	<img src="bla" alt="Ingen bild, sorry!">\
         	<p>' + data[0].company + '</p>';
-        	if(data[2] === data[0].mail) {
+        	if(data[1] === data[0].mail) {
 	        	retString += '<button id="editInfo" onClick="editCompanyProfile()">Edit profile</button>';
 	        	retString += '<button id="addPosition" onClick="addPosition()">Add position</button>';
 	        	retString += '<button id="applications" onClick="viewApplications()">View applications</button>';
@@ -66,7 +66,7 @@
 		          	</div>\
 		          	<div id="detailInfo">\
 			            <p>' + data[0].mail + '</p>\
-			            <p>' + data[0].city + '</p>\
+			            <p>' + data[0].headQuarter + '</p>\
 			            <p>' + data[0].orientation + '</p>\
 		          	</div>\
 		          	<div id="description">\
@@ -131,6 +131,7 @@ function addPosition(){
       <input type="text" id="country" placeholder="Country"><br>\
       <input type="text" id="city" placeholder="City"><br>\
       <input type="text" id="merits" placeholder="Merits"><br>\
+      <input type="text" id="date" placeholder="Starting Date"><br>\
       <input type="number" id="freePositions" placeholder="1"><br>\
       <input type="text" id="description" placeholder="Description"><br>\
       <input type="submit" onClick="addPositionAjax()" value="Add position">\
@@ -143,13 +144,14 @@ function addPositionAjax(){
   var countryVal = document.getElementById("country").value;
   var cityVal = document.getElementById("city").value;
   var meritsVal = document.getElementById("merits").value;
+  var dateVal = document.getElementById("date").value;
   var freePositionsVal = document.getElementById("freePositions").value;
   var descriptionVal = document.getElementById("description").value;
   $.ajax({
     url: "../php/addPosition.php",
     type: "POST",
     dataType: "json",
-    data: {position: positionVal, weeklyHours: weeklyHoursVal, country: countryVal, city: cityVal, mertis: meritsVal, freePositions: freePositionsVal, description: descriptionVal},
+    data: {date: dateVal, position: positionVal, weeklyHours: weeklyHoursVal, country: countryVal, city: cityVal, merits: meritsVal, freePositions: freePositionsVal, description: descriptionVal},
     success: function(data) {
       alert(data);
     }
@@ -220,7 +222,7 @@ function acceptApplicant(userMail, position){
       dataType: "json",
       data: {option: optionVal, userMail: userMail, position: position},
       success: function(data){
-        alert(data);
+        viewApplications();
     }
   });
 }

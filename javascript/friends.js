@@ -12,7 +12,7 @@ function loadFollowers() {
 																</div>\
 																<div>\
 																	<p>You have been a follower since</p>\
-																	<p>' + data[i].date + '</p>\
+																	<p>' + data[i].datetime + '</p>\
 																</div>\
 																<div>\
 																	<button onClick="removeFollow(\'' + data[i].followingMail + '\')">Unfollow</button>\
