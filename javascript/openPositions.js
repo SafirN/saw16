@@ -9,7 +9,7 @@ function loadOpenPositions(company) {
      for(var i = 0; i < data.length; i++) {
         retString += '<li class="openPositionsCell">\
         <div class="apply"><button class="applyButton" onClick="applyButton(\'' + data[i].company  +'\',\'' + data[i].position + '\')">Apply!</button>\</div>\
-        <div><img class="pic" src=\'' + data[i].companyPicture + '\' alt="Love me!"><p>' + data[i].company +'</p></div>\
+        <div><img class="pic" src="img/default2.jpg" alt="Love me!"><p>' + data[i].company +'</p></div>\
         <div><p>Position</p><p>' + data[i].position + '</p></div>\
         <div><p>Country</p><p>' + data[i].country + '</p></div>\
         <div><p>City</p><p>' + data[i].city + '</p></div>\
@@ -52,7 +52,7 @@ function searchOpenPositions() {
       for(var i = 0; i < data.length; i++) {
         retString += '<li class="openPositionsCell">\
         <div class="apply"><button class="applyButton" onClick="applyButton(\'' + data[i].company  +'\',\'' + data[i].position + '\')">Apply!</button>\</div>\
-        <div><img class="pic" src=\'' + data[i].companyPicture + '\' alt="Love me!"><p>' + data[i].company +'</p></div>\
+        <div><img class="pic" src="img/default2.jpg" alt="Love me!"><p>' + data[i].company +'</p></div>\
         <div><p>Position</p><p>' + data[i].position + '</p></div>\
         <div><p>Country</p><p>' + data[i].country + '</p></div>\
         <div><p>City</p><p>' + data[i].city + '</p></div>\
