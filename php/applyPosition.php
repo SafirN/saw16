@@ -43,6 +43,7 @@
 				$prepared->bindParam(3, $companyMail['mail'], PDO::PARAM_STR, strlen($companyMail['mail']));
 			    $prepared->bindParam(4, $_COOKIE['mail'], PDO::PARAM_STR, strlen($_COOKIE['mail']));
 			    $prepared->execute();
+			    print json_encode("You have applied for " . $_POST['position']);
 
 			}else{
 				print json_encode("Someone was faster then you to apply for this job");

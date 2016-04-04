@@ -18,12 +18,13 @@
 	$prepared->execute();
 
 	$num_row = $prepared->rowCount();
-	//while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
-//					echo $row["lan"];/
-		//			echo $row["objekttyp"];
-	//			}	
 
-	if($num_row > 0){ //Användare finns
+	$prepared = $conn ->prepare("SELECT company FROM companyProfiles WHERE company = ?");
+	$prepared->bindParam(1, $name, PDO::PARAM_STR, strlen($name));
+	$prepared->execute();
+
+	$name_row = $prepared->rowCount();
+	if($num_row > 0 || $name_row > 0){ //Användare finns
 		echo "User already exists!";
 
 	}else{ // Användare finns inte
@@ -32,7 +33,7 @@
 		//Random salt
 		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
 		//Infrmation about the hash using blowfish algorithm
-		$salt = sprintf("$2a$%02d$", $cost) . $salt;
+		$salt = sprintf("$2y$%02d$", $cost) . $salt;
 		//DES Based
 		$hash = crypt($password, $salt);
 
