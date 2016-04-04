@@ -8,7 +8,7 @@
       	var retString = "";
       	if(data[3] === "user"){
         	retString += '<div id="contentHead">\
-        	<img src=\'' + data[0].picture + '\' alt="Ingen bild, sorry!">\
+        	<img src="img/default.jpg" alt="lul">\
         	<p>' + data[0].name + '</p>';
         	if(data[2] === data[0].mail){
             	retString += '<button id="editProfile" onClick="editUserProfile()"> Edit profile</button>';
@@ -48,7 +48,7 @@
           	</div>';    
       	} else {
         	retString += '<div id="contentHead">\
-        	<img src="bla" alt="Ingen bild, sorry!">\
+        	<img src="img/default2.jpg" alt="Ingen bild, sorry!">\
         	<p>' + data[0].company + '</p>';
         	if(data[2] === data[0].mail) {
 	        	retString += '<button id="editInfo" onClick="editCompanyProfile()">Edit profile</button>';
