@@ -15,6 +15,7 @@ button:visited {
 
 #bar {
 	display: block;
+	height: 30px;
 }
 
 #navButtons {

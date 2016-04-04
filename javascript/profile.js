@@ -6,7 +6,7 @@
     dataType: "json",
     success: function(data) {
       	var retString = "";
-      	if(data[3] === "user"){
+      	if(data[3] === "user" && mail === true){
         	retString += '<div id="contentHead">\
         	<img src=\'' + data[0].picture + '\' alt="Ingen bild, sorry!">\
         	<p>' + data[0].name + '</p>';
@@ -306,12 +306,9 @@ function loadProfile(userType) {
 }
 */
 
-function searchPersonCompany() {
-	//console.log(evt);
-	//evt.preventDefault();
-	
+function searchPersonCompany() {	
 	var searchStr = document.getElementById("searchField").value;
-    var retStr = '<link rel="stylesheet" type="text/css" href="css/personCompanySearch.css">';
+    var retStr = "";
     //PEOPLE
     $.ajax({
       url: "../php/sp.php",
@@ -341,6 +338,9 @@ function searchPersonCompany() {
           </li>';
         }
         retStr += '</ul>';
+        document.getElementById("search").innerHTML = '<form onsubmit="return searchPersonCompany()">\
+                <input id="searchField" type="text" name="search" placeholder="Find person/company"><input id="submitSearch" type="submit" onClick="searchPersonCompany()" value="Go!")>\
+                </form>';
         document.getElementById("content").innerHTML = retStr;
       }
     });
