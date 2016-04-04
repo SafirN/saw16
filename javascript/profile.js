@@ -222,9 +222,10 @@ function acceptApplicant(userMail, position){
       dataType: "json",
       data: {option: optionVal, userMail: userMail, position: position},
       success: function(data){
-        viewApplications();
+   
     }
   });
+      viewApplications();
 }
 function viewApplications(){
   $.ajax({

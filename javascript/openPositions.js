@@ -15,6 +15,7 @@ function loadOpenPositions(company) {
         <div><p>City</p><p>' + data[i].city + '</p></div>\
         <div><p>Hours</p><p>' + data[i].weeklyHours + '</p></div>\
         <div><p>Merits</p><p>' + data[i].merits + '</p></div>\
+        <div><p>Starting</p><p>' + data[i].datetime + '</p></div>\
         <div><p>Description</p><p>' + data[i].description + '</p></div>\
         </li>';
      }
