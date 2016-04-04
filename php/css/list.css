@@ -48,6 +48,9 @@
 	margin-top: 8px;
 	margin-bottom: 8px;
 }
+#content ul li.searchCell div {
+	
+}
 
 #content ul li div p:first-child {
 	font-weight: bold;
