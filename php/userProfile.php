@@ -42,7 +42,7 @@
     }
 
     array_push($arr, $_COOKIE['mail']);
-    array_push($arr, $_COOKIE['userType']);
+    array_push($arr, $type['type']);
     print json_encode($arr);
     
     //print json_encode($result['name']);
