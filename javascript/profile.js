@@ -308,7 +308,7 @@ function loadProfile(userType) {
 
 function searchPersonCompany() {	
 	var searchStr = document.getElementById("searchField").value;
-    var retStr = "";
+    var retStr = "<ul>";
     //PEOPLE
     $.ajax({
       url: "../php/sp.php",
