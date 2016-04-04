@@ -6,7 +6,7 @@
     dataType: "json",
     success: function(data) {
       	var retString = "";
-      	if(data[3] === "user" && mail === true){
+      	if(data[3] === "user"){
         	retString += '<div id="contentHead">\
         	<img src=\'' + data[0].picture + '\' alt="Ingen bild, sorry!">\
         	<p>' + data[0].name + '</p>';
@@ -50,7 +50,7 @@
         	retString += '<div id="contentHead">\
         	<img src="bla" alt="Ingen bild, sorry!">\
         	<p>' + data[0].company + '</p>';
-        	if(data[1] === data[0].mail) {
+        	if(data[2] === data[0].mail) {
 	        	retString += '<button id="editInfo" onClick="editCompanyProfile()">Edit profile</button>';
 	        	retString += '<button id="addPosition" onClick="addPosition()">Add position</button>';
 	        	retString += '<button id="applications" onClick="viewApplications()">View applications</button>';
