@@ -8,7 +8,7 @@
 
   $result = array();
   if(!empty($_POST['company'])){
-    $prepared = $conn->prepare("SELECT company, position, weeklyHours, country, city, merits, description FROM openPositions WHERE company = ?");
+    $prepared = $conn->prepare("SELECT company, position, weeklyHours, country, city, merits, description, datetime FROM openPositions WHERE company = ?");
     $prepared->bindParam(1, $_POST['company'], PDO::PARAM_STR, strlen($_POST['company']));
     $prepared->execute();
     while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
@@ -17,7 +17,7 @@
     print json_encode($result);
 
   }else{
-    $prepared = $conn->prepare("SELECT company, position, weeklyHours, country, city, merits, description FROM openPositions");
+    $prepared = $conn->prepare("SELECT company, position, weeklyHours, country, city, merits, description, datetime FROM openPositions");
     $prepared->execute();
     while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
       array_push($result, $row);

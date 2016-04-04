@@ -13,7 +13,7 @@
 	    $prepared->execute();
 	    $company = $prepared->fetch(PDO::FETCH_ASSOC);
 
-		$prepared = $conn->prepare("SELECT freePositions, weeklyHours FROM openPositions WHERE company = ? AND position = ?");
+		$prepared = $conn->prepare("SELECT freePositions, weeklyHours, datetime FROM openPositions WHERE company = ? AND position = ?");
 		$prepared->bindParam(1, $company['company'], PDO::PARAM_STR, strlen($company['company']));
 	    $prepared->bindParam(2, $_POST['position'], PDO::PARAM_STR, strlen($_POST['position']));
 	    $prepared->execute();
@@ -37,11 +37,12 @@
 		    $prepared->execute();
 		   	
 		    //Lägga till i filledPositions
-		    $prepared = $conn->prepare("INSERT INTO  filledPositions(company, mail, position, datetime, weeklyHours) VALUES (?,?,?,NOW(),?)");
+		    $prepared = $conn->prepare("INSERT INTO filledPositions(company, mail, position, datetime, weeklyHours) VALUES (?,?,?,?,?)");
 		   	$prepared->bindParam(1, $company['company'], PDO::PARAM_STR, strlen($company['company']));
 		   	$prepared->bindParam(2, $_POST['userMail'], PDO::PARAM_STR, strlen($_POST['userMail']));
 		    $prepared->bindParam(3, $_POST['position'], PDO::PARAM_STR, strlen($_POST['position']));
-			$prepared->bindParam(4, $freePositions['weeklyHours'], PDO::PARAM_STR, strlen($freePositions['weeklyHours']));
+		   	$prepared->bindParam(4, $freePositions['datetime'], PDO::PARAM_STR, strlen($freePositions['datetime']));
+			$prepared->bindParam(5, $freePositions['weeklyHours'], PDO::PARAM_STR, strlen($freePositions['weeklyHours']));
 		    $prepared->execute();
 
 		   	//KOLLA OM VI SKA TA BORT position eller ej

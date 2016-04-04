@@ -10,7 +10,7 @@ function loadFilledPositions() {
     			<div><img class="pic" src=\'' + data[i].companyPicture + '\' alt="Love me!"><p>' + data[i].company + '</p></div>\
 			    <div><p>Position</p><p>' + data[i].position + '</p></div>\
 			    <div><p>Hours</p><p>' + data[i].weeklyHours + '</p></div>\
-			    <div><p>Starting</p><p>' + data[i].date + '</p></div>\
+			    <div><p>Starting</p><p>' + data[i].datetime + '</p></div>\
 				</li>';
 			}
   	 		retString += '</ul>';
