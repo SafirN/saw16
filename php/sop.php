@@ -8,7 +8,7 @@
   $prepared->execute();
   $result = array();
   while($row = $prepared->fetch(PDO::FETCH_ASSOC)){
-    if(strpos($row['company'], $_GET['data']) !== false) {
+    if(strpos(strToLower($row['company']), strToLower($_GET['data'])) !== false) {
       array_push($result, $row);
     }
   }

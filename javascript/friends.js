@@ -1,20 +1,27 @@
 function loadFollowers() {
 				$.ajax({
-				    url: "../php/friends.php",
+				 			url: "../php/friends.php",
 				    type: "GET",
 				    dataType:"json",
 				    success: function(data) {
-							    	var retString = '<link rel="stylesheet" type="text/css" href="css/friends.css"><div id="container"><ul id="friendList">';
+							    	var retString = '<ul>';
 							    	for(var i = 0; i < data.length; i++) {
-							    					retString += '<li class="friendCell">\
-																<p class="friendName">' + data[i].name + '</p>\
-																<p class="date"> Friends since: ' + data[i].date + '</p>\
-																<button onClick="removeFollow(\'' + data[i].followingMail + '\')">Unfollow</button>\
+							    					retString += '<li class="followingCell">\
+							    					<div>\
+																	<p onClick="loadProfile(\'' + data[i].followingMail + '\')">' + data[i].name + '</p>\
+																</div>\
+																<div>\
+																	<p>You have been a follower since</p>\
+																	<p>' + data[i].date + '</p>\
+																</div>\
+																<div>\
+																	<button onClick="removeFollow(\'' + data[i].followingMail + '\')">Unfollow</button>\
+																</div>\
 																</li>';
 							    	}
-							    	retString += '</ul></div>';
-							    	document.getElementById("search").innerHTML = '<form id="friendSearchForm">\
-        				<input id="searchField" type="search" name="search" placeholder="Filter friends"><button id="submitSearch" type="button" onClick="searchFollowers(document.getElementById(\'searchField\').value)">Go!</button>\
+							    	retString += '</ul>';
+							    	document.getElementById("search").innerHTML = '<form onsubmit="return searchFollowers()">\
+        				<input id="searchField" type="text" name="search" placeholder="Filter friends"><input id="submitSearch" type="submit" onClick="searchFollowers()" value="Go!">\
         				</form>';
 												document.getElementById("content").innerHTML = retString;
 								}
@@ -36,7 +43,8 @@ function removeFollow(unfollow) {
 				}
 }
 
-function searchFollowers(searchStr) {
+function searchFollowers() {
+	var searchStr = document.getElementById("searchField").value;
 	$.ajax({
 		url: "../php/sf.php",
 		data: { data: searchStr },
@@ -55,4 +63,5 @@ function searchFollowers(searchStr) {
 			document.getElementById("content").innerHTML = retStr;
 		}
 	});
+	return false;
 }

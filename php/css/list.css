@@ -1,0 +1,68 @@
+#content ul {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: auto;
+	list-style-type: none;
+}
+
+#content ul li {
+	width: 100%;
+	height: auto;
+	margin-bottom: 5px;
+	font-size: 0;
+	border: 2px groove #69E071;
+}
+
+#content ul li div {
+	height: auto;
+	display: inline-block;
+	margin: 0 auto;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 16px;
+	text-align: center;
+}
+
+#content ul li div p {
+	margin: 0 auto;
+}
+
+#content ul li div button {
+	background-color: #69E071;
+	border: 1px solid #69E071;
+	color: #FAF1E8;
+}
+
+#content ul li.openPositionsCell div {
+	width: 12.5%;
+	
+}
+
+#content ul li.filledPositionsCell div {
+	width: 25%;
+}
+
+#content ul li.followingCell div {
+	width: 33%;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#content ul li div p:first-child {
+	font-weight: bold;
+}
+
+.pic {
+	height: 70px;
+	width: 70px;
+	margin-top: 4px;
+}
+
+.applyButton {
+	width: 150px;
+	height: 80px;
+	margin: 0 auto;
+	background-color: #69E071;
+	border: 1px solid #F7DCBE;
+}

@@ -1,92 +1,85 @@
-function loadProfile(mail) {
+	function loadProfile(mail) {
    $.ajax({
     url: "../php/userProfile.php",
     type: "POST",
     data: {searchMail: mail},
     dataType: "json",
     success: function(data) {
-      var retString = "";
-      if(data[3] === "user"){
-        retString += '<div id="container">\
-         Shit is real\
-          <div id="profilePicture">\
-              <img id="userPicture" alt="Ingen bild, sorry!" src="' + data[0].profilePicture + '">\
-         </div>\
-         <div id="profileName">\
-          <p id="profileText">' + data[0].name + '</p>\
-         </div>\
-         <div id="infoContainer">\
-          <div id="infoTitles">\
-           <p class="infoTitle"> Contact:</p>\
-           <p class="infoTitle"> City: </p>\
-           <p class="infoTitle"> Age:  </p>\
-           <p class="infoTitle"> Gender: </p>\
-           <p class="infoTitle"> Education:  </p>\
-           <p class="infoTitle"> Occupation:  </p>\
-           <p class="infoTitle"> Merits:  </p>\
-          </div>\
-         <div id="infoText">\
-          <p class="infoText">' + data[0].mail + '</p>\
-          <p class="infoText">' + data[0].city + '</p>\
-          <p class="infoText">' + data[0].age + '</p>\
-          <p class="infoText">' + data[0].gender + '</p>\
-          <p class="infoText">' + data[0].education + '</p>\
-          <p class="infoText">' + data[0].currentWork + '</p>\
-          <p class="infoText">' + data[0].merits + '</p>\
-         </div>\
-        </div>\
-        <div id="descriptionContainer">\
-         <p id="descriptionText">' + data[0].description + '</p>';
-        if(data[2] === data[0].mail){
-            retString += '<div id="editInfo"> <button onClick="editUserProfile()"> Edit your profile</button> </div>';
-        }else if(data[1].length === 0){
-            retString += '<div id="editInfo"> <button onClick="addFollow(\'' + data[0].mail + '\')">Follow</button> </div>';
-        }else{
-            for(var i = 0; i < data[1].length; i++){
-              if(data[1][i].followingMail != data[0].mail){
-                  retString += '<div id="editInfo"> <button onClick="addFollow(\'' + data[0].mail + '\')">Follow</button> </div>';
-                  break; 
-              }
-            }
-        }     
-      }else{
-         retString += '<div id="container">\
-         Shit is real\
-          <div id="profilePicture">\
-              <img id="userPicture" alt="Ingen bild, sorry!" src="' + data[0].companyPicture + '">\
-         </div>\
-         <div id="profileName">\
-          <p id="profileText">' + data[0].company + '</p>\
-         </div>\
-         <div id="infoContainer">\
-          <div id="infoTitles">\
-           <p class="infoTitle"> Contact:</p>\
-           <p class="infoTitle"> HQ: </p>\
-           <p class="infoTitle"> Orientation:  </p>\
-          </div>\
-         <div id="infoText">\
-          <p class="infoText">' + data[0].mail + '</p>\
-          <p class="infoText">' + data[0].headQuarter + '</p>\
-          <p class="infoText">' + data[0].orientation + '</p>\
-         </div>\
-        </div>\
-        <div id="descriptionContainer">\
-         <p id="descriptionText">' + data[0].description + '</p>';
-        if(data[1] === data[0].mail){
-        retString += '<div id="editInfo"> <button onClick="editCompanyProfile()"> Edit your profile</button> </div>';
-        retString += '<div id="addPosition"> <button onClick="addPosition()"> Add position</button> </div>';
-        retString += '<div id="applications"> <button onClick="viewApplications()"> View applications</button> </div>';
-        }
-        retString += '<div id="showPositions"> <button onClick="loadOpenPositions(\'' + data[0].company+ '\')">View open positions</button> </div>';
-
-      }
-      
-      retString += '</div>';
-      document.getElementById("search").innerHTML = '<form id="personCompanySearchForm">\
-                <input id="searchField" type="search" name="search" placeholder="Find person/company"><button id="submitSearch" type="button" onClick="searchPersonCompany(document.getElementById(\'searchField\').value)">Go!</button>\
+      	var retString = "";
+      	if(data[3] === "user"){
+        	retString += '<div id="contentHead">\
+        	<img src=\'' + data[0].picture + '\' alt="Ingen bild, sorry!">\
+        	<p>' + data[0].name + '</p>';
+        	if(data[2] === data[0].mail){
+            	retString += '<button id="editProfile" onClick="editUserProfile()"> Edit profile</button>';
+        	}else if(data[1].length === 0){
+            	retString += '<button id="addFollow" onClick="addFollow(\'' + data[0].mail + '\')">Follow</button>';
+        	}else{
+            	for(var i = 0; i < data[1].length; i++){
+              		if(data[1][i].followingMail != data[0].mail){
+                  		retString += '<button id="addFollow" onClick="addFollow(\'' + data[0].mail + '\')">Follow</button>';
+                  		break; 
+              		}
+            	}
+        	}
+        	retString += '</div>\
+      		<div id="contentFoot">\
+          	<div id="detailSubject">\
+            <p>Contact:</p>\
+            <p>City:</p>\
+            <p>Age:</p>\
+            <p>Gender:</p>\
+            <p>Education:</p>\
+            <p>Occupation:</p>\
+            <p>Merits:</p>\
+          	</div>\
+          	<div id="detailInfo">\
+            <p>' + data[0].mail + '</p>\
+            <p>' + data[0].city + '</p>\
+            <p>' + data[0].age + '</p>\
+            <p>' + data[0].gender + '</p>\
+            <p>' + data[0].education + '</p>\
+            <p>' + data[0].currentWork + '</p>\
+            <p>' + data[0].merits + '</p>\
+          	</div>\
+          	<div id="description">\
+            <p>Description</p>\
+            <p>' + data[0].description + '</p>\
+          	</div>';    
+      	} else {
+        	retString += '<div id="contentHead">\
+        	<img src="bla" alt="Ingen bild, sorry!">\
+        	<p>' + data[0].company + '</p>';
+        	if(data[1] === data[0].mail) {
+	        	retString += '<button id="editInfo" onClick="editCompanyProfile()">Edit profile</button>';
+	        	retString += '<button id="addPosition" onClick="addPosition()">Add position</button>';
+	        	retString += '<button id="applications" onClick="viewApplications()">View applications</button>';
+        	}
+        		retString += '<button id="showPositions" onClick="loadOpenPositions(\'' + data[0].company + '\')">View open positions</button>';
+				retString += '</div>\
+	    		<div id="contentFoot">\
+		        <div>\
+		          	<div id="detailSubject">\
+			        	<p>Contact:</p>\
+			            <p>HQ:</p>\
+			            <p>Orientation</p>\
+		          	</div>\
+		          	<div id="detailInfo">\
+			            <p>' + data[0].mail + '</p>\
+			            <p>' + data[0].city + '</p>\
+			            <p>' + data[0].orientation + '</p>\
+		          	</div>\
+		          	<div id="description">\
+			            <p>Description</p>\
+			            <p>' + data[0].description + '</p>\
+		        	</div>\
+		        </div>\
+      		</div>';
+  		}
+      document.getElementById("search").innerHTML = '<form onsubmit="return searchPersonCompany()">\
+                <input id="searchField" type="text" name="search" placeholder="Find person/company"><input id="submitSearch" type="submit" onClick="searchPersonCompany()" value="Go!")>\
                 </form>';
       document.getElementById("content").innerHTML = retString;
-
     } //end of success
   }); //end of AJAX
 }
@@ -313,7 +306,11 @@ function loadProfile(userType) {
 }
 */
 
-function searchPersonCompany(searchStr) {
+function searchPersonCompany() {
+	//console.log(evt);
+	//evt.preventDefault();
+	
+	var searchStr = document.getElementById("searchField").value;
     var retStr = '<link rel="stylesheet" type="text/css" href="css/personCompanySearch.css">';
     //PEOPLE
     $.ajax({
@@ -347,6 +344,7 @@ function searchPersonCompany(searchStr) {
         document.getElementById("content").innerHTML = retStr;
       }
     });
+    return false;
 }
 function applicantFormAjax(userMail, position, option){
   alert(option);

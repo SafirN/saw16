@@ -14,10 +14,8 @@
     <script type="text/javascript" src="../javascript/bar.js"></script>
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/bar.css">
-    <link rel="stylesheet" type="text/css" href="css/userProfile.css">
-    <link rel="stylesheet" type="text/css" href="css/companyProfile.css">
-    <link rel="stylesheet" type="text/css" href="css/openPositions.css">
-    <link rel="stylesheet" type="text/css" href="css/filledPositions.css">
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" type="text/css" href="css/list.css">
   </head>
   <body>
     <div id="topBackground">
