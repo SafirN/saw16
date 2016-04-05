@@ -21,7 +21,7 @@ function loadFollowers() {
 							    	}
 							    	retString += '</ul>';
 							    	document.getElementById("search").innerHTML = '<form onsubmit="return searchFollowers()">\
-        				<input id="searchField" type="text" name="search" placeholder="Filter friends"><input id="submitSearch" type="submit" onClick="searchFollowers()" value="Go!">\
+        				<input id="searchField" type="text" name="search" placeholder="Filter followers"><input id="submitSearch" type="submit" onClick="searchFollowers()" value="Go!">\
         				</form>';
 												document.getElementById("content").innerHTML = retString;
 								}
@@ -68,7 +68,7 @@ function searchFollowers() {
 			}
 			retStr += '</ul>';
 			document.getElementById("search").innerHTML = '<form onsubmit="return searchFollowers()">\
-        				<input id="searchField" type="text" name="search" placeholder="Filter friends"><input id="submitSearch" type="submit" onClick="searchFollowers()" value="Go!">\
+        				<input id="searchField" type="text" name="search" placeholder="Filter followers"><input id="submitSearch" type="submit" onClick="searchFollowers()" value="Go!">\
         				</form>';
 			document.getElementById("content").innerHTML = retStr;
 		}
