@@ -7,7 +7,7 @@ function loadFilledPositions() {
 			var retString = '<ul>';
 			for(var i = 0; i < data.length; i++) {
 				retString += '<li class="filledPositionsCell">\
-    			<div><img class="pic" src=\'' + data[i].companyPicture + '\' alt="Love me!"><p>' + data[i].company + '</p></div>\
+    			<div><img class="pic" src="img/default2.jpg" alt="Love me!"><p>' + data[i].company + '</p></div>\
 			    <div><p>Position</p><p>' + data[i].position + '</p></div>\
 			    <div><p>Hours</p><p>' + data[i].weeklyHours + '</p></div>\
 			    <div><p>Starting</p><p>' + data[i].datetime + '</p></div>\
