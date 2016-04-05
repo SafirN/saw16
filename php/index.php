@@ -35,8 +35,9 @@
     if(!isset($_COOKIE[$cookieName])) {
      echo '<script> loadLogin(); </script>';
     } else {
-     echo '<script> loadProfile();
-     loadBar(); </script>';
+     echo '<script> loadProfile(); </script>';
+    echo '<script> loadBar(); </script>';
+>>>>>>> 7fc63f0acaf0fc45fad42ed0c32b6da413b149b6
     }
   ?>
  </body>
